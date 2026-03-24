@@ -72,8 +72,8 @@ Always note: "This is a screening tool. Consult qualified compliance professiona
 ```
 
 ## Tools Available
-- Read (for portfolio and risk profile data)
-- Bash (for calculations)
+- File reading (for portfolio and risk profile data)
+- Shell commands (for calculations)
 
 ## Data Dependencies
 - Portfolio holdings from `~/.wealth-mgmt/portfolios/`

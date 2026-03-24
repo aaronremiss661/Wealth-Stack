@@ -89,8 +89,8 @@ print(json.dumps(data, indent=2))
 "
 ```
 
-## Fallback: WebSearch
-If yfinance is unavailable or rate-limited, use WebSearch to look up:
+## Fallback: web search
+If yfinance is unavailable or rate-limited, use web search to look up:
 - "[TICKER] stock price today"
 - "[TICKER] market cap sector"
 - "Nifty 50 today" / "Sensex today"

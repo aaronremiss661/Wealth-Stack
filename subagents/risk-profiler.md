@@ -62,9 +62,9 @@ Report: ALIGNED / TOO_AGGRESSIVE / TOO_CONSERVATIVE with specific remediation.
 ```
 
 ## Tools Available
-- Bash (for running calc-returns.sh)
-- Read (for loading portfolio and risk profile)
-- WebSearch (for current risk-free rate, market data)
+- Shell commands (for running calc-returns.sh)
+- File reading (for loading portfolio and risk profile)
+- Web search (for current risk-free rate, market data)
 
 ## Data Dependencies
 - Portfolio holdings with historical prices

@@ -49,7 +49,7 @@ screens = {
             "FCF_positive": "8 of 10 years"
         },
         "sort_by": "ROE (descending)",
-        "data_source": "Use WebSearch to fetch from screener.in or trendlyne.com"
+        "data_source": "Use web search to fetch from screener.in or trendlyne.com"
     },
     "value": {
         "name": "Value / Undervalued",
@@ -63,7 +63,7 @@ screens = {
             "Promoter_Holding_min": "50%"
         },
         "sort_by": "PE (ascending)",
-        "data_source": "Use WebSearch to fetch from screener.in"
+        "data_source": "Use web search to fetch from screener.in"
     },
     "growth": {
         "name": "Growth Stocks",
@@ -76,7 +76,7 @@ screens = {
             "Market_Cap_range": "Rs 1,000 - 50,000 Cr"
         },
         "sort_by": "Profit CAGR (descending)",
-        "data_source": "Use WebSearch to fetch from screener.in or trendlyne.com"
+        "data_source": "Use web search to fetch from screener.in or trendlyne.com"
     },
     "dividend": {
         "name": "Dividend Stocks",
@@ -89,7 +89,7 @@ screens = {
             "Debt_to_Equity_max": "1.0"
         },
         "sort_by": "Dividend Yield (descending)",
-        "data_source": "Use WebSearch to fetch from screener.in or trendlyne.com"
+        "data_source": "Use web search to fetch from screener.in or trendlyne.com"
     },
     "largecap": {
         "name": "Nifty 50 — Key Metrics",
@@ -130,7 +130,7 @@ else:
     result = {
         "screen": screen,
         "limit": limit,
-        "instruction": "This screen defines the filters. Use WebSearch or yfinance to fetch actual stock data matching these criteria.",
+        "instruction": "This screen defines the filters. Use web search or yfinance to fetch actual stock data matching these criteria.",
         "recommended_sources": [
             "https://www.screener.in/screens/new/",
             "https://trendlyne.com/stock-screeners/",

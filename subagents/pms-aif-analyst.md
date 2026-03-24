@@ -123,5 +123,5 @@ Before recommending PMS/AIF:
 ## Data Dependencies
 - Client portfolio and AUM
 - Client risk profile
-- SEBI PMS disclosure data (via WebSearch)
-- AIF performance data (via WebSearch)
+- SEBI PMS disclosure data (via web search)
+- AIF performance data (via web search)

@@ -17,7 +17,7 @@ Ask the user:
 
 Delegate to the **Market Researcher** subagent:
 
-> You are a Market Researcher subagent. Compile a market briefing using WebSearch.
+> You are a Market Researcher subagent. Compile a market briefing using web search.
 >
 > Research and summarize:
 > 1. **Major indices** — S&P 500, Nasdaq, Dow, Russell 2000, International (MSCI EAFE, EM)
@@ -30,7 +30,7 @@ Delegate to the **Market Researcher** subagent:
 > Briefing type: [from Phase 1]
 > Portfolio holdings (if applicable): [holdings list]
 >
-> Use WebSearch to find current data. Cite sources. Present data as of today's date.
+> Use web search to find current data. Cite sources. Present data as of today's date.
 
 ## Phase 3: Portfolio Impact Analysis
 

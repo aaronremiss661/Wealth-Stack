@@ -56,11 +56,11 @@ Flag any data gaps that prevent complete analysis.
 ```
 
 ## Tools Available
-- Bash (for running calc-returns.sh, fetch-quotes.sh)
-- Read (for loading portfolio files)
-- WebSearch (for current market data when CLI tools unavailable)
+- Shell commands (for running calc-returns.sh, fetch-quotes.sh)
+- File reading (for loading portfolio files)
+- Web search (for current market data when CLI tools unavailable)
 
 ## Data Dependencies
 - Portfolio holdings from `~/.wealth-mgmt/portfolios/`
-- Market data from `fetch-quotes.sh` or WebSearch
+- Market data from `fetch-quotes.sh` or web search
 - Benchmark data (S&P 500 by default)

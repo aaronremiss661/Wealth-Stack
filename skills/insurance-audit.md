@@ -72,7 +72,7 @@ RECOMMENDATION:
 | Tata AIA | Sampoorna Raksha | Rs 8,200 | Rs 13,900 | 98.9% |
 | LIC | Tech Term | Rs 10,500 | Rs 17,800 | 98.5% |
 
-*Rates approximate for age 30, male, non-smoker, 30yr term. Use WebSearch for current rates.*
+*Rates approximate for age 30, male, non-smoker, 30yr term. Use web search for current rates.*
 
 ## Phase 3: Health Insurance Audit
 
@@ -185,7 +185,7 @@ ESTIMATED ANNUAL COST:
 Save to `~/.wealth-mgmt/reports/insurance-audit-<date>.json`.
 
 Offer:
-- A) Get specific term plan quotes via WebSearch
+- A) Get specific term plan quotes via web search
 - B) Run `/financial-plan` to integrate insurance into overall plan
 - C) Run `/tax-filing` to check 80C/80D utilization
 - D) Save and review annually

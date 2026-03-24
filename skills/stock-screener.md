@@ -67,7 +67,7 @@ Inspired by Marcellus Consistent Compounders:
 bash commands/nse-screener.sh --screen "<screen_type>" --limit 20
 ```
 
-Or use WebSearch to pull data from Screener.in, Trendlyne, or Ticker Tape.
+Or use web search to pull data from Screener.in, Trendlyne, or Ticker Tape.
 
 ### Output Format
 

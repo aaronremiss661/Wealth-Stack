@@ -22,7 +22,7 @@ Ask the user:
 bash commands/fd-compare.sh --tenure <years>
 ```
 
-Or use WebSearch for latest rates.
+Or use web search for latest rates.
 
 ```
 FD RATES COMPARISON — 1 YEAR TENURE

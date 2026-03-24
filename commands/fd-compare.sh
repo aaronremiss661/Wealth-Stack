@@ -33,7 +33,7 @@ amount = float('$AMOUNT')
 senior = '$SENIOR' == 'true'
 tax_bracket = float('$TAX_BRACKET') / 100
 
-# FD rates data (approximate, update periodically via WebSearch)
+# FD rates data (approximate, update periodically via web search)
 # Format: [name, general_1yr, senior_1yr, general_3yr, senior_3yr, general_5yr, senior_5yr, min_amount, insured]
 banks = [
     ['SBI', 6.80, 7.30, 7.00, 7.50, 6.50, 7.50, 1000, True],

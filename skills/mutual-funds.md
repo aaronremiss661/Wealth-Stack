@@ -53,7 +53,7 @@ For each category, rank funds by:
 bash commands/fetch-mf-nav.sh <SCHEME_CODE>
 ```
 
-Or use WebSearch for latest fund data from AMFI, Value Research, or Morningstar India.
+Or use web search for latest fund data from AMFI, Value Research, or Morningstar India.
 
 ### Output: Top 5 Funds
 

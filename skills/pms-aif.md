@@ -38,7 +38,7 @@ Invoke the **PMS & AIF Analyst** subagent:
 
 > You are a PMS & AIF Analyst for WealthStack. Evaluate the following PMS strategy.
 >
-> Research via WebSearch:
+> Research via web search:
 > 1. SEBI PMS disclosure data for this manager
 > 2. AUM growth trend (rapid AUM growth dilutes small/midcap returns)
 > 3. Fund manager track record and tenure

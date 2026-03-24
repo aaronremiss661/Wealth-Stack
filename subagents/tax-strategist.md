@@ -57,9 +57,9 @@ Return a structured report:
 ```
 
 ## Tools Available
-- Bash (for calculations)
-- Read (for portfolio data with cost basis and dates)
-- WebSearch (for current tax rates, rules)
+- Shell commands (for calculations)
+- File reading (for portfolio data with cost basis and dates)
+- Web search (for current tax rates, rules)
 
 ## Data Dependencies
 - Portfolio with cost basis AND purchase dates for each lot
