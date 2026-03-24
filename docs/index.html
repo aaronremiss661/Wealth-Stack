@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WealthStack — AI Wealth Management for India</title>
+  <meta name="description" content="Open-source AI wealth management plugin. 26 AI agents, 22 skills. PMS, AIF, NRI tax, family office, goal-based SIPs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0f0d09;
+      --bg-card: #1a1610;
+      --bg-card-hover: #231f18;
+      --gold: #d4a853;
+      --gold-light: #f3cf88;
+      --gold-muted: #a08550;
+      --cream: #fffcf6;
+      --cream-muted: #c8c0b4;
+      --taupe: #746756;
+      --border: #2e2820;
+      --border-light: #3d352a;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--gold);
+      color: var(--bg-dark);
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.5rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(20px);
+      background: rgba(15, 13, 9, 0.85);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.4s ease;
+    }
+
+    .logo {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .logo span { color: var(--gold); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--cream-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      padding: 0.6rem 1.8rem;
+      background: transparent;
+      border: 1px solid var(--gold-muted);
+      color: var(--gold);
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 100px;
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      color: var(--bg-dark);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(212, 168, 83, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      border: 1px solid var(--border-light);
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 3rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      animation: pulse 2s infinite;
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s ease 0.1s both;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: var(--cream-muted);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      animation: fadeUp 0.8s ease 0.2s both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1.2rem;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    .btn-primary {
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      color: var(--bg-dark);
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 100px;
+      border: none;
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(212, 168, 83, 0.2);
+    }
+
+    .btn-secondary {
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--cream);
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 100px;
+      border: 1px solid var(--border-light);
+      transition: all 0.4s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold-muted);
+      color: var(--gold);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 4rem;
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.8s ease 0.4s both;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--taupe);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 0.5rem;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 8rem 4rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.2;
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--cream-muted);
+      max-width: 550px;
+      margin-bottom: 4rem;
+    }
+
+    /* DIVIDER */
+    .divider {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+
+    .divider hr {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* CAPABILITIES GRID */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .cap-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cap-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .cap-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-light);
+      transform: translateY(-4px);
+    }
+
+    .cap-card:hover::before { opacity: 1; }
+
+    .cap-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .cap-card h3 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .cap-card p {
+      font-size: 0.9rem;
+      color: var(--cream-muted);
+      line-height: 1.6;
+    }
+
+    .cap-card .cmd {
+      display: inline-block;
+      margin-top: 1.2rem;
+      padding: 0.3rem 0.8rem;
+      background: rgba(212, 168, 83, 0.08);
+      border: 1px solid rgba(212, 168, 83, 0.15);
+      border-radius: 6px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.75rem;
+      color: var(--gold);
+    }
+
+    /* AGENTS */
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .agent-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .agent-card:hover {
+      border-color: var(--gold-muted);
+      background: var(--bg-card-hover);
+    }
+
+    .agent-name {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .agent-desc {
+      font-size: 0.82rem;
+      color: var(--cream-muted);
+      line-height: 1.5;
+    }
+
+    /* TIERS */
+    .tiers {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.2rem;
+    }
+
+    .tier {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .tier:hover {
+      border-color: var(--gold-muted);
+      transform: translateY(-4px);
+    }
+
+    .tier-name {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+
+    .tier-aum {
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tier-skills {
+      list-style: none;
+      text-align: left;
+    }
+
+    .tier-skills li {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.72rem;
+      color: var(--cream-muted);
+      padding: 0.3rem 0;
+    }
+
+    /* HOW IT WORKS */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding: 2.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      counter-increment: step;
+    }
+
+    .step::before {
+      content: counter(step, decimal-leading-zero);
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 300;
+      color: rgba(212, 168, 83, 0.15);
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .step h3 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+    }
+
+    .step p {
+      font-size: 0.9rem;
+      color: var(--cream-muted);
+    }
+
+    .step code {
+      display: block;
+      margin-top: 1rem;
+      padding: 0.8rem 1rem;
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.78rem;
+      color: var(--gold);
+      overflow-x: auto;
+    }
+
+    /* AUTORESEARCH */
+    .research-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .research-box h3 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+    }
+
+    .research-box p {
+      color: var(--cream-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .loop-diagram {
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.78rem;
+      color: var(--gold);
+      background: rgba(0,0,0,0.4);
+      padding: 2rem;
+      border-radius: 12px;
+      line-height: 1.8;
+      white-space: pre;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 10rem 4rem;
+    }
+
+    .cta-section h2 {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-section h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .cta-section p {
+      color: var(--cream-muted);
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto 3rem;
+    }
+
+    .cta-install {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.9rem;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .footer-left {
+      font-size: 0.8rem;
+      color: var(--taupe);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .footer-links a {
+      color: var(--taupe);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .cap-grid { grid-template-columns: repeat(2, 1fr); }
+      .agents-grid { grid-template-columns: repeat(2, 1fr); }
+      .tiers { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .agents-grid { grid-template-columns: 1fr; }
+      .tiers { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: column; gap: 2rem; }
+      .hero-ctas { flex-direction: column; }
+      .research-box { grid-template-columns: 1fr; padding: 2rem; }
+      footer { flex-direction: column; gap: 2rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="logo">Wealth<span>Stack</span></a>
+    <ul class="nav-links">
+      <li><a href="#capabilities">Capabilities</a></li>
+      <li><a href="#agents">Agents</a></li>
+      <li><a href="#tiers">Client Tiers</a></li>
+      <li><a href="#install">Install</a></li>
+    </ul>
+    <a href="https://github.com/revanupoju/Wealth-Stack" class="nav-cta" target="_blank">View on GitHub</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Open Source &middot; MIT Licensed
+    </div>
+    <h1>The <em>intelligent</em> wealth<br>management platform</h1>
+    <p class="hero-sub">26 AI agents that understand Indian investing — from SIP planning to family office governance. Built for every investor, from retail to ultra-HNI.</p>
+    <div class="hero-ctas">
+      <a href="https://github.com/revanupoju/Wealth-Stack" class="btn-primary" target="_blank">Get Started</a>
+      <a href="#capabilities" class="btn-secondary">Explore Capabilities</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">26</div>
+        <div class="stat-label">AI Agents</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">22</div>
+        <div class="stat-label">Skills</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">8</div>
+        <div class="stat-label">CLI Tools</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">&#8377;0</div>
+        <div class="stat-label">Forever</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <div class="section-label reveal">Capabilities</div>
+    <h2 class="section-title reveal">Everything your wealth advisor does,<br>in your terminal</h2>
+    <p class="section-desc reveal">Each skill is a deep domain expert. Ask it anything — from tax harvesting strategies to NRI repatriation rules.</p>
+
+    <div class="cap-grid">
+      <div class="cap-card reveal">
+        <div class="cap-icon">&#9678;</div>
+        <h3>Portfolio Analysis</h3>
+        <p>Holdings breakdown, XIRR calculations, sector exposure, concentration risk flags. Import from Zerodha, Groww, or CSV.</p>
+        <span class="cmd">/wealthstack:portfolio</span>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">&#9670;</div>
+        <h3>Tax Optimization</h3>
+        <p>LTCG/STCG harvesting at new regime rates. Wash sale detection, lot-level HIFO/FIFO optimization, HUF stacking.</p>
+        <span class="cmd">/wealthstack:tax-optimize</span>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">&#9674;</div>
+        <h3>PMS &amp; AIF Due Diligence</h3>
+        <p>Evaluate portfolio management services and alternative investment funds. Fee analysis, tax drag comparison, suitability checks.</p>
+        <span class="cmd">/wealthstack:pms-aif</span>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">&#9689;</div>
+        <h3>NRI Wealth Management</h3>
+        <p>Cross-border taxation for US, UAE, UK, Singapore corridors. FEMA compliance, DTAA optimization, repatriation planning.</p>
+        <span class="cmd">/wealthstack:nri-wealth</span>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">&#9686;</div>
+        <h3>Goal-Based Planning</h3>
+        <p>Map every rupee to a life goal. Retirement, education, house — with glide path allocation that shifts as goals approach.</p>
+        <span class="cmd">/wealthstack:goal-planner</span>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">&#9673;</div>
+        <h3>Family Office</h3>
+        <p>Multi-generational wealth structuring. Trusts, HUF, holding companies, succession planning, philanthropy, governance frameworks.</p>
+        <span class="cmd">/wealthstack:family-office</span>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">&#9672;</div>
+        <h3>Risk Assessment</h3>
+        <p>Sharpe, Sortino, VaR, max drawdown. Stress test against 2008, COVID, demonetization. Risk-profile alignment checks.</p>
+        <span class="cmd">/wealthstack:risk-assess</span>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">&#9671;</div>
+        <h3>SEBI Compliance</h3>
+        <p>Suitability analysis, concentration limit enforcement, documentation audit, KYC verification, regulatory requirement tracking.</p>
+        <span class="cmd">/wealthstack:compliance</span>
+      </div>
+      <div class="cap-card reveal">
+        <div class="cap-icon">&#9675;</div>
+        <h3>Client Reports</h3>
+        <p>Generate professional HTML portfolio reports. Performance attribution, risk dashboard, recommendations — ready for client meetings.</p>
+        <span class="cmd">/wealthstack:client-report</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- AGENTS -->
+  <section id="agents">
+    <div class="section-label reveal">AI Agents</div>
+    <h2 class="section-title reveal">26 specialists that learn<br>and improve over time</h2>
+    <p class="section-desc reveal">Each agent has persistent memory. The more you use WealthStack, the smarter it gets — inspired by Karpathy's autoresearch.</p>
+
+    <div class="agents-grid">
+      <div class="agent-card reveal"><div class="agent-name">portfolio-analyzer</div><div class="agent-desc">Holdings, allocation, XIRR, concentration</div></div>
+      <div class="agent-card reveal"><div class="agent-name">risk-profiler</div><div class="agent-desc">Sharpe, VaR, drawdown, stress tests</div></div>
+      <div class="agent-card reveal"><div class="agent-name">tax-strategist</div><div class="agent-desc">LTCG/STCG, harvesting, HUF</div></div>
+      <div class="agent-card reveal"><div class="agent-name">market-researcher</div><div class="agent-desc">Nifty, RBI, FII/DII, sectors</div></div>
+      <div class="agent-card reveal"><div class="agent-name">investment-counsellor</div><div class="agent-desc">IPS drafting, behavioral coaching</div></div>
+      <div class="agent-card reveal"><div class="agent-name">fund-manager</div><div class="agent-desc">Stock picking, forensic accounting</div></div>
+      <div class="agent-card reveal"><div class="agent-name">asset-allocator</div><div class="agent-desc">Multi-asset models, tactical shifts</div></div>
+      <div class="agent-card reveal"><div class="agent-name">hni-advisor</div><div class="agent-desc">Rs 5Cr+ structuring, PMS/AIF</div></div>
+      <div class="agent-card reveal"><div class="agent-name">pms-analyst</div><div class="agent-desc">PMS/AIF due diligence, fee analysis</div></div>
+      <div class="agent-card reveal"><div class="agent-name">goal-planner</div><div class="agent-desc">SIP calculations, glide path</div></div>
+      <div class="agent-card reveal"><div class="agent-name">retirement-specialist</div><div class="agent-desc">Bucket strategy, SWP, NPS</div></div>
+      <div class="agent-card reveal"><div class="agent-name">family-office</div><div class="agent-desc">Trusts, succession, philanthropy</div></div>
+      <div class="agent-card reveal"><div class="agent-name">liquidity-event-planner</div><div class="agent-desc">ESOP exits, lump sum deployment</div></div>
+      <div class="agent-card reveal"><div class="agent-name">compliance-checker</div><div class="agent-desc">SEBI suitability, KYC</div></div>
+      <div class="agent-card reveal"><div class="agent-name">nri-advisor</div><div class="agent-desc">FEMA, DTAA, PFIC, repatriation</div></div>
+      <div class="agent-card reveal"><div class="agent-name">insurance-estate</div><div class="agent-desc">Term life, health, wills</div></div>
+      <div class="agent-card reveal"><div class="agent-name">credit-debt-advisor</div><div class="agent-desc">Loan optimization, CIBIL</div></div>
+      <div class="agent-card reveal"><div class="agent-name">nbfc-lending</div><div class="agent-desc">LAS, LAP, gold loans, MSME</div></div>
+      <div class="agent-card reveal"><div class="agent-name">private-equity</div><div class="agent-desc">LP due diligence, J-curve</div></div>
+      <div class="agent-card reveal"><div class="agent-name">early-stage-investor</div><div class="agent-desc">Angel investing, term sheets</div></div>
+      <div class="agent-card reveal"><div class="agent-name">startup-equity-advisor</div><div class="agent-desc">ESOP tax, secondary sales</div></div>
+      <div class="agent-card reveal"><div class="agent-name">alternative-investments</div><div class="agent-desc">REITs, InvITs, SGBs</div></div>
+      <div class="agent-card reveal"><div class="agent-name">corporate-treasury</div><div class="agent-desc">Cash deployment, working capital</div></div>
+      <div class="agent-card reveal"><div class="agent-name">capital-markets-research</div><div class="agent-desc">IPOs, derivatives, earnings</div></div>
+      <div class="agent-card reveal"><div class="agent-name">esg-planner</div><div class="agent-desc">ESG scoring, BRSR, green bonds</div></div>
+      <div class="agent-card reveal"><div class="agent-name">deck-creator</div><div class="agent-desc">Portfolio review presentations</div></div>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- TIERS -->
+  <section id="tiers">
+    <div class="section-label reveal">Client Tiers</div>
+    <h2 class="section-title reveal">Adapts to your scale</h2>
+    <p class="section-desc reveal">WealthStack routes you to the right tools based on portfolio size.</p>
+
+    <div class="tiers">
+      <div class="tier reveal">
+        <div class="tier-name">Retail</div>
+        <div class="tier-aum">&lt; &#8377;50 Lakhs</div>
+        <ul class="tier-skills">
+          <li>/goal-planner</li>
+          <li>/mutual-funds</li>
+          <li>/tax-filing</li>
+          <li>/retirement-calc</li>
+        </ul>
+      </div>
+      <div class="tier reveal">
+        <div class="tier-name">Affluent</div>
+        <div class="tier-aum">&#8377;50L &ndash; 5Cr</div>
+        <ul class="tier-skills">
+          <li>/risk-assess</li>
+          <li>/financial-plan</li>
+          <li>/goal-planner</li>
+          <li>/stock-screener</li>
+        </ul>
+      </div>
+      <div class="tier reveal">
+        <div class="tier-name">HNI</div>
+        <div class="tier-aum">&#8377;5Cr &ndash; 25Cr</div>
+        <ul class="tier-skills">
+          <li>/hni-advisory</li>
+          <li>/pms-aif</li>
+          <li>/tax-optimize</li>
+          <li>/rebalance</li>
+        </ul>
+      </div>
+      <div class="tier reveal">
+        <div class="tier-name">UHNI</div>
+        <div class="tier-aum">&#8377;25Cr &ndash; 100Cr</div>
+        <ul class="tier-skills">
+          <li>/hni-advisory</li>
+          <li>/compliance</li>
+          <li>/pms-aif</li>
+          <li>/nri-wealth</li>
+        </ul>
+      </div>
+      <div class="tier reveal">
+        <div class="tier-name">Family Office</div>
+        <div class="tier-aum">&#8377;100Cr+</div>
+        <ul class="tier-skills">
+          <li>/family-office</li>
+          <li>/compliance</li>
+          <li>/nri-wealth</li>
+          <li>/client-report</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- HOW IT WORKS -->
+  <section id="install">
+    <div class="section-label reveal">Get Started</div>
+    <h2 class="section-title reveal">Three steps to your<br>AI wealth desk</h2>
+
+    <div class="steps">
+      <div class="step reveal">
+        <h3>Clone</h3>
+        <p>Get the repository on your machine.</p>
+        <code>git clone https://github.com/revanupoju/Wealth-Stack.git</code>
+      </div>
+      <div class="step reveal">
+        <h3>Load</h3>
+        <p>Start Claude Code with the plugin.</p>
+        <code>claude --plugin-dir ./Wealth-Stack</code>
+      </div>
+      <div class="step reveal">
+        <h3>Ask</h3>
+        <p>Start with any skill or just describe what you need.</p>
+        <code>/wealthstack:goal-planner "retire at 50"</code>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"><hr></div>
+
+  <!-- AUTORESEARCH -->
+  <section>
+    <div class="research-box reveal">
+      <div>
+        <div class="section-label">Self-Improving</div>
+        <h3>Gets smarter with<br>every conversation</h3>
+        <p>Inspired by Karpathy's autoresearch. Every agent has persistent memory. New tax rules, regulation changes, edge cases — they're saved and used in future responses.</p>
+        <p style="color: var(--taupe); font-size: 0.85rem;">Run <span style="color: var(--gold); font-family: monospace;">/wealthstack:research</span> for active knowledge updates. Run <span style="color: var(--gold); font-family: monospace;">/wealthstack:audit</span> to clean stale facts.</p>
+      </div>
+      <div class="loop-diagram">  ┌──────────────────────┐
+  │   User asks question │
+  └──────────┬───────────┘
+             ▼
+  ┌──────────────────────┐
+  │  Check agent memory  │
+  └──────────┬───────────┘
+             ▼
+  ┌──────────────────────┐
+  │  Research + Respond   │
+  └──────────┬───────────┘
+             ▼
+  ┌──────────────────────┐
+  │  New knowledge?       │
+  └───┬──────────────┬───┘
+      ▼              ▼
+   ┌──────┐    ┌──────────┐
+   │ Save │    │ Continue │
+   └──┬───┘    └──────────┘
+      ▼
+  ┌──────────────────────┐
+  │  Next query smarter  │
+  └──────────────────────┘</div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2 class="reveal">Your wealth,<br><em>intelligently</em> managed</h2>
+    <p class="reveal">Open source. Free forever. Built for India.</p>
+    <div class="cta-install reveal">git clone https://github.com/revanupoju/Wealth-Stack.git</div>
+    <br><br>
+    <a href="https://github.com/revanupoju/Wealth-Stack" class="btn-primary reveal" target="_blank">Star on GitHub</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      &copy; 2026 WealthStack &middot; MIT Licensed &middot; Built for the Indian wealth management community
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/revanupoju/Wealth-Stack" target="_blank">GitHub</a>
+      <a href="https://github.com/revanupoju/Wealth-Stack/issues" target="_blank">Issues</a>
+      <a href="https://github.com/revanupoju/Wealth-Stack/blob/main/LICENSE" target="_blank">License</a>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Nav background on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 100) {
+        nav.style.background = 'rgba(15, 13, 9, 0.95)';
+      } else {
+        nav.style.background = 'rgba(15, 13, 9, 0.85)';
+      }
+    });
+  </script>
+</body>
+</html>
