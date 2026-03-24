@@ -1,159 +1,148 @@
 # WealthStack
 
-**Open-source AI wealth management for Indian investors**
+AI-powered wealth management plugin for Indian investors.
 
-[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/revanupoju/Wealth-Stack/pulls)
-[![Made in India](https://img.shields.io/badge/Made%20in-India-orange.svg)](#)
+**20 skills. 11 AI agents. Built for India.**
 
-The wealth management brain that knows PMS, AIFs, NRI taxation, SEBI rules, and goal-based SIPs. Works on Claude, Cursor, ChatGPT, or any AI tool.
+PMS/AIF due diligence, NRI tax planning, HNI/UHNI advisory, family office governance, goal-based SIPs, SEBI compliance — all from your terminal.
 
----
+## Install
 
-## Works Everywhere
+### Claude Code (plugin)
 
-| Platform | How to Use |
-|----------|-----------|
-| **Claude Desktop / Web** | Upload `wealthstack.md` as Project Knowledge |
-| **Cursor** | Add `wealthstack.md` to `.cursor/rules/` or project context |
-| **Windsurf** | Add `wealthstack.md` to `.windsurfrules` |
-| **Claude Code** | `git clone` to `~/.claude/skills/wealthstack` |
-| **ChatGPT** | Paste `wealthstack.md` as Custom Instructions |
-| **Any LLM** | Use `wealthstack.md` as system prompt |
+```bash
+claude plugin install wealthstack
+```
+
+Or load locally during development:
 
 ```bash
 git clone https://github.com/revanupoju/Wealth-Stack.git
-# Upload wealthstack.md to your AI tool of choice
+claude --plugin-dir ./Wealth-Stack
 ```
 
----
+Then type `/wealthstack:portfolio` or any skill name.
+
+### Claude Desktop / Web
+
+Upload the contents of any `skills/*/SKILL.md` or `agents/*.md` file as **Project Knowledge** in your Claude project.
 
 ## What's Inside
 
-| | Count | Examples |
-|-|-------|---------|
-| Skills | **20** | `/portfolio` `/pms-aif` `/nri-wealth` `/goal-planner` `/family-office` |
-| Subagents | **11** | HNI Advisor, PMS Analyst, Tax Strategist, NRI Specialist |
-| CLI Commands | **10** | SIP calculator, XIRR, tax calculator, MF NAV fetcher |
-| Connectors | **3** | Market data, portfolio import, document generation |
+### Skills (slash commands)
 
----
+**Core**
 
-## Skills
-
-### Core Skills
-
-| Skill | Description |
+| Skill | What It Does |
 |-------|-------------|
-| `portfolio` | Analyze holdings, allocation, performance, concentration risk |
-| `risk-assess` | Client risk profiling, stress testing, drawdown analysis |
-| `tax-optimize` | LTCG/STCG harvesting, wash sale detection (new regime FY25-26) |
-| `rebalance` | Drift analysis, target allocation, tax-aware trade generation |
-| `client-report` | Professional HTML reports for client meetings |
-| `market-brief` | Nifty 50, Sensex, RBI policy, FII/DII flows, sector analysis |
-| `compliance` | SEBI suitability checks, concentration limits, disclosure review |
-| `financial-plan` | Retirement projections, estate planning, education funding |
+| `/portfolio` | Holdings analysis, allocation breakdown, concentration risk |
+| `/risk-assess` | Risk questionnaire, Sharpe/VaR/drawdown, stress testing |
+| `/tax-optimize` | LTCG/STCG harvesting, wash sale detection, lot optimization |
+| `/rebalance` | Drift analysis, trade generation, tax-aware rebalancing |
+| `/client-report` | Professional HTML reports for client meetings |
+| `/market-brief` | Nifty/Sensex, RBI policy, FII/DII flows, sector analysis |
+| `/compliance` | SEBI suitability, concentration limits, documentation audit |
+| `/financial-plan` | Retirement Monte Carlo, estate planning, education funding |
 
-### India Wealth Management Skills
+**India Wealth Management**
 
-| Skill | Description |
+| Skill | What It Does | Modeled After |
+|-------|-------------|---------------|
+| `/pms-aif` | PMS manager evaluation, AIF Cat I/II/III due diligence | 360 ONE, Marcellus, ASK |
+| `/hni-advisory` | Rs 5Cr+ multi-asset structuring, LRS international | 360 ONE Wealth, Kotak Private |
+| `/nri-wealth` | FEMA, DTAA, PFIC, NRE/NRO, repatriation planning | Centrum Wealth |
+| `/family-office` | Trusts, HUF, succession, philanthropy, governance | Waterfield Advisors |
+| `/goal-planner` | Goal-mapped SIPs with glide path allocation | Dezerv, Scripbox |
+
+**More**
+
+| Skill | What It Does |
 |-------|-------------|
-| `pms-aif` | Evaluate PMS managers (Marcellus, ASK, 360 ONE) and AIFs (Cat I/II/III) |
-| `hni-advisory` | Rs 5Cr+ structuring — PMS, AIF, structured products, LRS |
-| `nri-wealth` | NRI/RNOR tax, FEMA, DTAA, NRE/NRO/FCNR, repatriation |
-| `family-office` | Rs 100Cr+ families — trusts, HUF, succession, philanthropy |
-| `goal-planner` | Goal-mapped SIPs with glide path — retirement, education, house |
-| `mutual-funds` | MF screening, SIP tracking, direct vs regular comparison |
-| `stock-screener` | Screen NSE/BSE stocks by fundamentals |
-| `fd-bonds` | FD rate comparison, NCD/bond analysis, SGB tracking |
-| `tax-filing` | ITR preparation, 80C/80D/80G optimization, old vs new regime |
-| `insurance-audit` | Term life HLV, health insurance structuring, ULIP evaluation |
-| `retirement-calc` | FIRE calculator, Monte Carlo projections, SWP planning |
+| `/mutual-funds` | MF screening, comparison, direct plan recommendations |
+| `/stock-screener` | NSE/BSE fundamentals — PE, ROE, debt, dividends |
+| `/fd-bonds` | FD rate comparison, NCD analysis, G-Sec yields |
+| `/insurance-audit` | Term life HLV, health structuring, ULIP evaluation |
+| `/tax-filing` | Old vs new regime, 80C/80D optimization, capital gains |
+| `/retirement-calc` | FIRE planning, NPS optimization, withdrawal strategy |
+| `/wealth-overview` | Lists all skills and capabilities |
 
----
+### Agents (subagents)
+
+| Agent | Specialization |
+|-------|---------------|
+| `portfolio-analyzer` | Holdings, allocation, performance attribution |
+| `risk-profiler` | Sharpe, Sortino, VaR, stress testing |
+| `tax-strategist` | LTCG/STCG, harvesting, wash sales, HUF |
+| `compliance-checker` | SEBI suitability, concentration limits |
+| `market-researcher` | Nifty, RBI, FII/DII, sector rotation |
+| `hni-advisor` | Rs 5Cr+ structuring, PMS/AIF, LRS |
+| `pms-analyst` | Marcellus, ASK, 360 ONE due diligence |
+| `goal-planner` | SIP calculations, glide path, FIRE |
+| `family-office` | Trusts, succession, philanthropy |
+| `nri-advisor` | FEMA, DTAA, PFIC, repatriation |
+| `insurance-estate` | Term life, health, will/nomination audit |
+
+### Scripts (CLI tools)
+
+| Script | What It Does |
+|--------|-------------|
+| `fetch-quotes.sh` | Stock/ETF quotes via yfinance (NSE/BSE) |
+| `sip-calculator.sh` | SIP future value and required SIP calculator |
+| `tax-calculator.sh` | Old vs new regime comparison (FY 2025-26) |
+| `portfolio-xirr.sh` | XIRR from portfolio cashflows |
+| `fd-compare.sh` | FD rates across major banks and NBFCs |
+| `fetch-mf-nav.sh` | Mutual fund NAV from AMFI API |
+| `nse-screener.sh` | Stock screening by value/quality/growth/dividend |
+| `import-portfolio.sh` | Import CSV from Zerodha/Groww/custom format |
 
 ## Client Tiers
 
-WealthStack adapts recommendations based on portfolio size:
-
-| Tier | AUM | What You Get |
-|------|-----|-------------|
-| Retail | < Rs 50L | Goal-based SIPs, MF screening, tax optimization |
-| Affluent | Rs 50L – 5Cr | Risk assessment, financial planning, MF + ETF advisory |
-| HNI | Rs 5Cr – 25Cr | PMS/AIF access, dedicated advisory, tax structuring |
-| UHNI | Rs 25Cr – 100Cr | Bespoke allocation, alternatives, SEBI compliance |
-| Family Office | Rs 100Cr+ | Multi-gen trusts, succession, philanthropy, governance |
-
----
-
-## Who Is This For?
-
-- **Retail investors** managing their own SIPs and mutual funds
-- **HNIs** evaluating PMS and AIF products
-- **NRIs** navigating cross-border taxation (US, UAE, UK, Singapore)
-- **Family offices** structuring multi-generational wealth
-- **Financial advisors** augmenting their practice with AI
-- **Fintech builders** adding AI wealth features to their products
-
----
+| Tier | AUM | Recommended Skills |
+|------|-----|--------------------|
+| Retail | < Rs 50L | `/goal-planner` `/mutual-funds` `/tax-filing` |
+| Affluent | Rs 50L – 5Cr | `/goal-planner` `/risk-assess` `/financial-plan` |
+| HNI | Rs 5Cr – 25Cr | `/hni-advisory` `/pms-aif` `/tax-optimize` |
+| UHNI | Rs 25Cr – 100Cr | `/hni-advisory` `/pms-aif` `/compliance` |
+| Family Office | Rs 100Cr+ | `/family-office` `/nri-wealth` `/compliance` |
 
 ## Directory Structure
 
 ```
-WealthStack/
-├── wealthstack.md       # Main prompt — upload this to any AI tool
-├── README.md
+wealthstack/
+├── .claude-plugin/
+│   └── plugin.json        # Plugin manifest
+├── skills/                # 20 skill directories
+│   ├── portfolio/SKILL.md
+│   ├── risk-assess/SKILL.md
+│   └── ...
+├── agents/                # 11 subagent definitions
+│   ├── portfolio-analyzer.md
+│   ├── hni-advisor.md
+│   └── ...
+├── scripts/               # 8 CLI tools
+│   ├── sip-calculator.sh
+│   └── ...
+├── settings.json          # Default plugin settings
 ├── LICENSE
-├── skills/              # 20 skill definitions
-│   ├── portfolio.md
-│   ├── pms-aif.md
-│   ├── nri-wealth.md
-│   ├── goal-planner.md
-│   └── ...
-├── subagents/           # 11 specialized AI agents
-│   ├── hni-uhni-advisor.md
-│   ├── pms-aif-analyst.md
-│   ├── nri-wealth-advisor.md
-│   └── ...
-├── connectors/          # 3 external integrations
-│   ├── market-data.md
-│   ├── portfolio-import.md
-│   └── document-gen.md
-└── commands/            # 10 CLI tools
-    ├── sip-calculator.sh
-    ├── tax-calculator.sh
-    ├── portfolio-xirr.sh
-    └── ...
+└── README.md
 ```
-
----
 
 ## Contributing
 
-PRs welcome! Areas where we need help:
-
-- **Broker imports** — Angel One, Upstox, Dhan, Zerodha Kite CSV formats
-- **AMFI NAV API** — real-time MF NAV integration
-- **NPS tracking** — National Pension System portfolio analysis
-- **F&O analysis** — Options and futures position tracking
-- **More tax scenarios** — Hindu Undivided Family, trust taxation, NRI edge cases
-- **Regional languages** — Hindi, Tamil, Telugu, Kannada, Marathi support
-
----
+PRs welcome for:
+- Zerodha/Groww/Angel One CSV import formats
+- AMFI MF NAV API integration
+- NPS/PPF/EPF tracking
+- F&O position analysis
+- More broker formats
+- Regional language support
 
 ## Disclaimer
 
-WealthStack is an AI-powered informational tool. It is **not** a registered investment advisor, tax consultant, or financial planner. All outputs are for informational and educational purposes only.
-
-- Consult a SEBI-registered investment advisor before making investment decisions
-- Consult a qualified CA/tax professional before implementing tax strategies
-- Past performance data referenced in skills does not guarantee future results
-- Tax laws and SEBI regulations change frequently — verify current rules
-
----
+WealthStack is for informational purposes only. It does not constitute financial, tax, or legal advice. Consult qualified professionals before making investment decisions. Tax laws and regulations change frequently.
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for details.
+MIT
 
 Built for the Indian wealth management community.
