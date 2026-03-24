@@ -2,7 +2,7 @@
 
 AI-powered wealth management plugin for Indian investors.
 
-**20 skills. 11 AI agents. Built for India.**
+**20 skills. 26 AI agents. Built for India.**
 
 PMS/AIF due diligence, NRI tax planning, HNI/UHNI advisory, family office governance, goal-based SIPs, SEBI compliance — all from your terminal.
 
@@ -46,13 +46,13 @@ Upload the contents of any `skills/*/SKILL.md` or `agents/*.md` file as **Projec
 
 **India Wealth Management**
 
-| Skill | What It Does | Modeled After |
-|-------|-------------|---------------|
-| `/pms-aif` | PMS manager evaluation, AIF Cat I/II/III due diligence | 360 ONE, Marcellus, ASK |
-| `/hni-advisory` | Rs 5Cr+ multi-asset structuring, LRS international | 360 ONE Wealth, Kotak Private |
-| `/nri-wealth` | FEMA, DTAA, PFIC, NRE/NRO, repatriation planning | Centrum Wealth |
-| `/family-office` | Trusts, HUF, succession, philanthropy, governance | Waterfield Advisors |
-| `/goal-planner` | Goal-mapped SIPs with glide path allocation | Dezerv, Scripbox |
+| Skill | What It Does |
+|-------|-------------|
+| `/pms-aif` | PMS manager evaluation, AIF Cat I/II/III due diligence, fee analysis |
+| `/hni-advisory` | Rs 5Cr+ multi-asset structuring, PMS/AIF, LRS international |
+| `/nri-wealth` | FEMA, DTAA, PFIC, NRE/NRO/FCNR, repatriation planning |
+| `/family-office` | Trusts, HUF, succession, philanthropy, governance |
+| `/goal-planner` | Goal-mapped SIPs with glide path allocation |
 
 **More**
 
@@ -66,21 +66,63 @@ Upload the contents of any `skills/*/SKILL.md` or `agents/*.md` file as **Projec
 | `/retirement-calc` | FIRE planning, NPS optimization, withdrawal strategy |
 | `/wealth-overview` | Lists all skills and capabilities |
 
-### Agents (subagents)
+### Agents (26 subagents)
+
+**Analysis & Research**
 
 | Agent | Specialization |
 |-------|---------------|
 | `portfolio-analyzer` | Holdings, allocation, performance attribution |
 | `risk-profiler` | Sharpe, Sortino, VaR, stress testing |
+| `market-researcher` | Nifty, RBI, FII/DII, sector rotation |
+| `capital-markets-research` | IPO analysis, yield curve, derivatives, earnings |
+
+**Advisory**
+
+| Agent | Specialization |
+|-------|---------------|
+| `investment-counsellor` | IPS drafting, behavioral coaching, suitability |
+| `fund-manager` | Stock picking, forensic accounting, portfolio construction |
+| `asset-allocator` | Multi-asset models, tactical shifts, rebalancing |
+| `hni-advisor` | Rs 5Cr+ structuring, PMS/AIF, LRS |
+| `pms-analyst` | PMS/AIF due diligence, fee comparison, tax drag |
+
+**Planning**
+
+| Agent | Specialization |
+|-------|---------------|
+| `goal-planner` | SIP calculations, glide path, FIRE |
+| `retirement-specialist` | Bucket strategy, SWP, NPS optimization |
+| `family-office` | Trusts, succession, philanthropy, governance |
+| `liquidity-event-planner` | ESOP exits, property sales, lump sum deployment |
+
+**Tax & Compliance**
+
+| Agent | Specialization |
+|-------|---------------|
 | `tax-strategist` | LTCG/STCG, harvesting, wash sales, HUF |
 | `compliance-checker` | SEBI suitability, concentration limits |
-| `market-researcher` | Nifty, RBI, FII/DII, sector rotation |
-| `hni-advisor` | Rs 5Cr+ structuring, PMS/AIF, LRS |
-| `pms-analyst` | Marcellus, ASK, 360 ONE due diligence |
-| `goal-planner` | SIP calculations, glide path, FIRE |
-| `family-office` | Trusts, succession, philanthropy |
 | `nri-advisor` | FEMA, DTAA, PFIC, repatriation |
+
+**Specialized**
+
+| Agent | Specialization |
+|-------|---------------|
 | `insurance-estate` | Term life, health, will/nomination audit |
+| `credit-debt-advisor` | Loan optimization, CIBIL, debt restructuring |
+| `nbfc-lending` | LAS, LAP, gold loans, MSME lending |
+| `alternative-investments` | REITs, InvITs, SGBs, crypto |
+| `private-equity` | LP due diligence, J-curve, co-invest |
+| `early-stage-investor` | Angel investing, term sheets, AIF Cat I |
+| `startup-equity-advisor` | ESOP tax, exercise timing, secondary sales |
+| `corporate-treasury` | Cash deployment, FD laddering, working capital |
+| `esg-planner` | ESG scoring, BRSR, carbon footprint, green bonds |
+
+**Output**
+
+| Agent | Specialization |
+|-------|---------------|
+| `deck-creator` | Client-ready portfolio review presentations |
 
 ### Scripts (CLI tools)
 
@@ -115,7 +157,7 @@ wealthstack/
 │   ├── portfolio/SKILL.md
 │   ├── risk-assess/SKILL.md
 │   └── ...
-├── agents/                # 11 subagent definitions
+├── agents/                # 26 subagent definitions
 │   ├── portfolio-analyzer.md
 │   ├── hni-advisor.md
 │   └── ...
