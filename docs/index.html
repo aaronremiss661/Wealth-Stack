@@ -504,26 +504,60 @@
     .cell .cmd { font-family:var(--mono); font-size:0.7rem; color:var(--gold-soft); opacity:0.7; }
     .cell:hover .cmd { opacity:1; }
 
-    .cell .agent-name { font-family:var(--heading); font-size:0.95rem; font-weight:500; color:var(--white); letter-spacing:0.01em; margin-bottom:0.2rem; transition:color 0.3s; }
-    .cell .agent-role { font-size:0.8rem; font-weight:300; color:var(--w60); }
-    .cell .agent-icon {
-      width:56px; height:56px; margin-bottom:0.8rem; display:block;
+    /* ── AGENT TABS ── */
+    .agent-tabs {
+      display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:center;
+      margin-bottom:2.5rem;
+    }
+    .agent-tab {
+      padding:0.5rem 1.2rem; border-radius:100px; font-size:0.7rem; font-weight:500;
+      letter-spacing:0.08em; text-transform:uppercase; cursor:pointer;
+      border:1px solid var(--w10); background:transparent; color:var(--w40);
+      transition:all 0.3s ease;
+    }
+    .agent-tab:hover { border-color:var(--w20); color:var(--w70); }
+    .agent-tab.active {
+      background:rgba(74,144,217,0.1); border-color:rgba(74,144,217,0.25);
+      color:#6AADEB;
+    }
+    .agent-tab .tab-count {
+      display:inline-block; margin-left:0.4rem; font-size:0.6rem;
+      opacity:0.5;
+    }
+
+    .agent-grid-tabbed {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    }
+    .agent-card {
+      padding:clamp(1.2rem,2vw,2rem); border-top:1px solid var(--w10);
+      transition:background 0.4s; position:relative;
+    }
+    .agent-card:not(:nth-child(4n+1)) { border-left:1px solid var(--w10); }
+    .agent-card:hover {
+      background:radial-gradient(ellipse at center top, var(--icon-glow, rgba(74,144,217,0.05)) 0%, transparent 70%);
+    }
+    .agent-card .agent-icon {
+      width:48px; height:48px; margin-bottom:0.7rem; display:block;
       opacity:0.65; transition:opacity 0.5s ease, filter 0.5s ease;
     }
-    .cell .agent-icon svg { width:100%; height:100%; }
-    .cell:hover .agent-icon {
+    .agent-card .agent-icon svg { width:100%; height:100%; }
+    .agent-card:hover .agent-icon {
       opacity:1;
       filter:drop-shadow(0 0 14px var(--icon-glow, rgba(74,144,217,0.5))) drop-shadow(0 0 36px var(--icon-glow, rgba(74,144,217,0.2)));
     }
-    .cell:hover .agent-name { color:var(--gold-bright); }
-    .cell:hover {
-      background:radial-gradient(ellipse at center top, var(--icon-glow, rgba(74,144,217,0.05)) 0%, transparent 70%);
+    .agent-card .agent-name {
+      font-family:var(--heading); font-size:0.95rem; font-weight:500;
+      color:var(--white); letter-spacing:0.01em; margin-bottom:0.15rem;
+      transition:color 0.3s;
     }
-    .agent-category {
-      grid-column:1/-1; padding:1.5rem clamp(1rem,1.5vw,1.5rem) 0.5rem;
-      font-size:0.6rem; font-weight:600; letter-spacing:0.2em;
-      text-transform:uppercase; color:var(--w30);
-      border-top:1px solid var(--w10);
+    .agent-card:hover .agent-name { color:var(--gold-bright); }
+    .agent-card .agent-role { font-size:0.78rem; font-weight:300; color:var(--w50); }
+
+    .agent-card.hidden { display:none; }
+
+    .agent-grid-footer {
+      text-align:center; padding-top:2rem;
+      font-size:0.75rem; color:var(--w30);
     }
 
     .cell .tier-name { font-size:1.05rem; font-weight:500; margin-bottom:0.15rem; }
@@ -747,12 +781,15 @@
       .agent-category { padding:1rem 1.25rem 0.4rem; }
       .agent-category + .cell { border-top:none; }
 
-      /* Agent grid — 2 columns on mobile for compact view */
-      .grid-4 { grid-template-columns:repeat(2,1fr) !important; }
-      .grid-4 .cell:nth-child(even) { border-left:1px solid var(--w10) !important; }
-      .cell .agent-icon { width:40px; height:40px; }
-      .cell .agent-name { font-size:0.8rem; }
-      .cell .agent-role { font-size:0.72rem; }
+      /* Agent grid — 2 columns on mobile */
+      .agent-grid-tabbed { grid-template-columns:repeat(2,1fr) !important; }
+      .agent-card:not(:nth-child(4n+1)) { border-left:none; }
+      .agent-card:nth-child(even) { border-left:1px solid var(--w10); }
+      .agent-card .agent-icon { width:36px; height:36px; }
+      .agent-card .agent-name { font-size:0.8rem; }
+      .agent-card .agent-role { font-size:0.68rem; }
+      .agent-tabs { gap:0.35rem; }
+      .agent-tab { padding:0.4rem 0.8rem; font-size:0.6rem; }
 
       /* Tier cards — 2 columns */
       .grid-5 { grid-template-columns:repeat(2,1fr) !important; }
@@ -1002,9 +1039,10 @@
       <h2 class="headline" id="agents-heading" data-a="1">26 experts that <em>remember</em><br>everything you tell them</h2>
       <p class="subdesc" data-a="2">Like having a full wealth management team — tax CA, insurance advisor, NRI specialist, retirement planner — all in one place. And they never forget.</p>
     </div>
-    <div class="grid-4" id="agent-grid"></div>
+    <div class="agent-tabs" id="agent-tabs"></div>
+    <div class="agent-grid-tabbed" id="agent-grid"></div>
+    <div class="agent-grid-footer" data-a>26 specialist agents &middot; all included</div>
     <script>
-    // Generate spirograph mandala SVGs for each agent
     const agents = [
       {cat:"Analysis & Research"},
       {n:"portfolio-analyzer",r:"Holdings, XIRR, allocation",c:"#4A90D9",p:12,s:"ellipse",rx:8,ry:3},
@@ -1047,25 +1085,61 @@
         else if(a.s==='circle') shapes+=`<circle cx="25" cy="${14-a.rx}" r="${a.rx}" transform="rotate(${angle},25,25)" fill="none" stroke="${a.c}" stroke-width="0.8" opacity="${0.5+0.4*Math.cos(i*0.6)}"/>`;
         else shapes+=`<rect x="${25-a.rx/2}" y="${10}" width="${a.rx}" height="${a.ry}" rx="0.8" transform="rotate(${angle},25,25)" fill="none" stroke="${a.c}" stroke-width="0.8" opacity="${0.55+0.35*Math.sin(i*1.2)}"/>`;
       }
-      // Add inner ring
       for(let i=0;i<Math.floor(a.p/2);i++){
         const angle=(360/(a.p/2))*i+15;
         shapes+=`<circle cx="25" cy="19" r="1.8" transform="rotate(${angle},25,25)" fill="${a.c}" opacity="0.35"/>`;
       }
       return `<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"><g class="mandala-ring">${shapes}</g><circle cx="25" cy="25" r="2" fill="${a.c}" opacity="0.7"/></svg>`;
     }
-    const grid=document.getElementById('agent-grid');
-    let colIdx=0;
+
+    // Build categories
+    const categories=[];
+    let currentCat=null;
     agents.forEach(a=>{
-      if(a.cat){
-        grid.innerHTML+=`<div class="agent-category">${a.cat}</div>`;
-        colIdx=0;
-      } else {
-        const bl=colIdx%4>0?' bl':'';
-        const displayName=a.n.split('-').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ');
-        grid.innerHTML+=`<div class="cell${bl}" data-a style="--icon-glow:${a.c}66"><span class="agent-icon" aria-hidden="true">${mandala(a)}</span><div class="agent-name">${displayName}</div><div class="agent-role">${a.r}</div></div>`;
-        colIdx++;
-      }
+      if(a.cat){currentCat={name:a.cat,agents:[]};categories.push(currentCat);}
+      else if(currentCat) currentCat.agents.push(a);
+    });
+
+    // Render tabs
+    const tabsEl=document.getElementById('agent-tabs');
+    const allTab=document.createElement('button');
+    allTab.className='agent-tab active';
+    allTab.innerHTML='All<span class="tab-count">26</span>';
+    allTab.dataset.cat='all';
+    tabsEl.appendChild(allTab);
+    categories.forEach(cat=>{
+      const btn=document.createElement('button');
+      btn.className='agent-tab';
+      btn.innerHTML=cat.name+'<span class="tab-count">'+cat.agents.length+'</span>';
+      btn.dataset.cat=cat.name;
+      tabsEl.appendChild(btn);
+    });
+
+    // Render all agents (flat, no category headers)
+    const grid=document.getElementById('agent-grid');
+    const allAgents=categories.flatMap(c=>c.agents);
+    allAgents.forEach(a=>{
+      const displayName=a.n.split('-').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ');
+      const cat=categories.find(c=>c.agents.includes(a))?.name||'';
+      const card=document.createElement('div');
+      card.className='agent-card';
+      card.dataset.category=cat;
+      card.style.setProperty('--icon-glow',a.c+'66');
+      card.setAttribute('data-a','');
+      card.innerHTML=`<span class="agent-icon" aria-hidden="true">${mandala(a)}</span><div class="agent-name">${displayName}</div><div class="agent-role">${a.r}</div>`;
+      grid.appendChild(card);
+    });
+
+    // Tab filtering
+    tabsEl.addEventListener('click',e=>{
+      const tab=e.target.closest('.agent-tab');
+      if(!tab) return;
+      tabsEl.querySelectorAll('.agent-tab').forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat=tab.dataset.cat;
+      grid.querySelectorAll('.agent-card').forEach(card=>{
+        card.classList.toggle('hidden',cat!=='all'&&card.dataset.category!==cat);
+      });
     });
     </script>
   </div>
