@@ -504,7 +504,7 @@
     .cell .cmd { font-family:var(--mono); font-size:0.7rem; color:var(--gold-soft); opacity:0.7; }
     .cell:hover .cmd { opacity:1; }
 
-    .cell .agent-name { font-family:var(--mono); font-size:0.73rem; font-weight:500; color:var(--gold-soft); margin-bottom:0.2rem; transition:color 0.3s; }
+    .cell .agent-name { font-family:var(--heading); font-size:0.95rem; font-weight:500; color:var(--white); letter-spacing:0.01em; margin-bottom:0.2rem; transition:color 0.3s; }
     .cell .agent-role { font-size:0.8rem; font-weight:300; color:var(--w60); }
     .cell .agent-icon {
       width:56px; height:56px; margin-bottom:0.8rem; display:block;
@@ -751,7 +751,7 @@
       .grid-4 { grid-template-columns:repeat(2,1fr) !important; }
       .grid-4 .cell:nth-child(even) { border-left:1px solid var(--w10) !important; }
       .cell .agent-icon { width:40px; height:40px; }
-      .cell .agent-name { font-size:0.65rem; }
+      .cell .agent-name { font-size:0.8rem; }
       .cell .agent-role { font-size:0.72rem; }
 
       /* Tier cards — 2 columns */
@@ -1062,7 +1062,8 @@
         colIdx=0;
       } else {
         const bl=colIdx%4>0?' bl':'';
-        grid.innerHTML+=`<div class="cell${bl}" data-a style="--icon-glow:${a.c}66"><span class="agent-icon" aria-hidden="true">${mandala(a)}</span><div class="agent-name">${a.n}</div><div class="agent-role">${a.r}</div></div>`;
+        const displayName=a.n.split('-').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ');
+        grid.innerHTML+=`<div class="cell${bl}" data-a style="--icon-glow:${a.c}66"><span class="agent-icon" aria-hidden="true">${mandala(a)}</span><div class="agent-name">${displayName}</div><div class="agent-role">${a.r}</div></div>`;
         colIdx++;
       }
     });
