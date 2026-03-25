@@ -615,7 +615,9 @@
     .loop-dot.active { background:var(--gold); border-color:var(--gold); box-shadow:0 0 8px rgba(74,144,217,0.4); }
 
     /* ── CTA ── */
-    .cta { text-align:center; padding:clamp(6rem,10vw,10rem) var(--pad); scroll-snap-align:start; }
+    .cta { text-align:center; padding:clamp(6rem,10vw,10rem) var(--pad); scroll-snap-align:start; position:relative; background:url('footer-bg.png') center bottom/cover no-repeat; }
+    .cta::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg, var(--bg) 0%, rgba(10,12,20,0.55) 40%, rgba(10,12,20,0.45) 70%, var(--bg) 100%); z-index:0; }
+    .cta > * { position:relative; z-index:1; }
     .cta h2 { font-family:var(--heading); font-size:clamp(2.5rem,5.5vw,4.5rem); font-weight:200; line-height:1.1; letter-spacing:-0.02em; margin-bottom:1.5rem; }
     .cta h2 em { font-style:italic; color:var(--gold); font-weight:400; }
     .cta .subdesc { margin:0 auto 2.5rem; text-align:center; max-width:400px; }
@@ -639,9 +641,7 @@
     .cta-code .copy-btn.copied { background:rgba(74,144,217,0.15); color:var(--gold); border-color:rgba(74,144,217,0.3); }
 
     /* ── FOOTER ── */
-    .footer-wrap { position:relative; overflow:hidden; }
-    .footer-img { width:100%; height:auto; display:block; opacity:0.6; }
-    .footer { position:relative; z-index:1; border-top:1px solid var(--w10); padding:2.5rem var(--pad); max-width:var(--max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .footer { border-top:1px solid var(--w10); padding:2.5rem var(--pad); max-width:var(--max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
     .footer-l { font-size:0.75rem; color:var(--w30); }
     .footer-r { display:flex; gap:2rem; }
     .footer-r a { font-size:0.75rem; color:var(--w30); transition:color 0.3s; }
@@ -1179,17 +1179,14 @@
 </main>
 
 <!-- FOOTER -->
-<div class="footer-wrap">
-  <img src="footer-bg.png" alt="" class="footer-img" loading="lazy" aria-hidden="true">
-  <footer class="footer" role="contentinfo">
-    <div class="footer-l">&copy; 2026 WealthStack &middot; MIT Licensed</div>
-    <nav class="footer-r" aria-label="Footer navigation">
-      <a href="https://github.com/revanupoju/Wealth-Stack" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://github.com/revanupoju/Wealth-Stack/issues" target="_blank" rel="noopener noreferrer">Issues</a>
-      <a href="https://github.com/revanupoju/Wealth-Stack/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a>
-    </nav>
-  </footer>
-</div>
+<footer class="footer" role="contentinfo">
+  <div class="footer-l">&copy; 2026 WealthStack &middot; MIT Licensed</div>
+  <nav class="footer-r" aria-label="Footer navigation">
+    <a href="https://github.com/revanupoju/Wealth-Stack" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://github.com/revanupoju/Wealth-Stack/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+    <a href="https://github.com/revanupoju/Wealth-Stack/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a>
+  </nav>
+</footer>
 
 <script>
 // Respect reduced motion preference
