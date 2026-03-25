@@ -332,6 +332,10 @@
     #tiers::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg, var(--bg) 0%, rgba(10,12,20,0.35) 25%, rgba(10,12,20,0.55) 55%, rgba(10,12,20,0.80) 75%, var(--bg) 100%); z-index:0; }
     #tiers > * { position:relative; z-index:1; }
     #tiers .headline, #tiers .eyebrow, #tiers .subdesc, #tiers .cell { text-shadow:0 2px 8px rgba(0,0,0,0.8); }
+    #more-cap { position:relative; background:url('capabilities-bg.png') center center/cover no-repeat; }
+    #more-cap::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg, var(--bg) 0%, rgba(10,12,20,0.60) 25%, rgba(10,12,20,0.55) 75%, var(--bg) 100%); z-index:0; }
+    #more-cap > * { position:relative; z-index:1; }
+    #more-cap .headline, #more-cap .eyebrow, #more-cap .cell { text-shadow:0 2px 8px rgba(0,0,0,0.8); }
     .sec-inner { max-width:var(--max); margin:0 auto; padding:0 var(--pad); }
 
     .eyebrow {
@@ -969,7 +973,7 @@
 <div class="deco" aria-hidden="true"><hr></div>
 
 <!-- MORE CAPABILITIES (Anterior border grid) -->
-<section class="sec" aria-labelledby="more-cap-heading">
+<section class="sec" id="more-cap" aria-labelledby="more-cap-heading">
   <div class="sec-inner">
     <div class="sec-header">
       <div class="eyebrow" data-a>AND THERE'S MORE</div>
