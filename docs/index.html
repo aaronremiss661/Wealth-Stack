@@ -639,7 +639,9 @@
     .cta-code .copy-btn.copied { background:rgba(74,144,217,0.15); color:var(--gold); border-color:rgba(74,144,217,0.3); }
 
     /* ── FOOTER ── */
-    .footer { border-top:1px solid var(--w10); padding:2.5rem var(--pad); max-width:var(--max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+    .footer-wrap { position:relative; overflow:hidden; }
+    .footer-img { width:100%; height:auto; display:block; opacity:0.6; }
+    .footer { position:relative; z-index:1; border-top:1px solid var(--w10); padding:2.5rem var(--pad); max-width:var(--max); margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
     .footer-l { font-size:0.75rem; color:var(--w30); }
     .footer-r { display:flex; gap:2rem; }
     .footer-r a { font-size:0.75rem; color:var(--w30); transition:color 0.3s; }
@@ -1177,14 +1179,17 @@
 </main>
 
 <!-- FOOTER -->
-<footer class="footer" role="contentinfo">
-  <div class="footer-l">&copy; 2026 WealthStack &middot; MIT Licensed</div>
-  <nav class="footer-r" aria-label="Footer navigation">
-    <a href="https://github.com/revanupoju/Wealth-Stack" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://github.com/revanupoju/Wealth-Stack/issues" target="_blank" rel="noopener noreferrer">Issues</a>
-    <a href="https://github.com/revanupoju/Wealth-Stack/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a>
-  </nav>
-</footer>
+<div class="footer-wrap">
+  <img src="footer-bg.png" alt="" class="footer-img" loading="lazy" aria-hidden="true">
+  <footer class="footer" role="contentinfo">
+    <div class="footer-l">&copy; 2026 WealthStack &middot; MIT Licensed</div>
+    <nav class="footer-r" aria-label="Footer navigation">
+      <a href="https://github.com/revanupoju/Wealth-Stack" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://github.com/revanupoju/Wealth-Stack/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+      <a href="https://github.com/revanupoju/Wealth-Stack/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a>
+    </nav>
+  </footer>
+</div>
 
 <script>
 // Respect reduced motion preference
