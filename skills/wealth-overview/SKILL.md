@@ -35,8 +35,9 @@ disable-model-invocation: true
 | `/wealthstack:tax-filing` | ITR preparation, 80C/80D/80G optimization |
 | `/wealthstack:retirement-calc` | FIRE calculator, SWP strategy, NPS optimization |
 
-## Agents
+## Agents (26)
 
+### Core Wealth Management
 | Agent | Purpose |
 |-------|---------|
 | portfolio-analyzer | Holdings, allocation, performance attribution |
@@ -50,6 +51,37 @@ disable-model-invocation: true
 | family-office | Trusts, HUF, succession, governance, philanthropy |
 | nri-advisor | NRE/NRO, FEMA, DTAA, PFIC, repatriation |
 | insurance-estate | Term life, health, will/nomination audit |
+
+### Asset Allocation & Alternatives
+| Agent | Purpose |
+|-------|---------|
+| asset-allocator | Multi-asset allocation models, tactical signals, rebalancing engine |
+| alternative-investments | REITs, InvITs, SGBs, fractional RE, crypto, art, collectibles |
+| fund-manager | Fund management perspective and analysis |
+| esg-planner | ESG/sustainable investing strategies |
+
+### Startup & Private Markets
+| Agent | Purpose |
+|-------|---------|
+| startup-equity-advisor | ESOP taxation, exercise timing, secondary sales, pre-IPO planning |
+| early-stage-investor | Angel investing, seed stage evaluation |
+| private-equity | PE fund analysis and due diligence |
+| liquidity-event-planner | IPO, M&A, secondary sale planning |
+
+### Specialized Advisory
+| Agent | Purpose |
+|-------|---------|
+| investment-counsellor | General investment advisory |
+| retirement-specialist | Dedicated retirement planning |
+| credit-debt-advisor | Credit/debt management and structuring |
+| capital-markets-research | Deep market research and analysis |
+| nbfc-lending | NBFC/lending sector specialist |
+| corporate-treasury | Corporate cash management and optimization |
+
+### Tools
+| Agent | Purpose |
+|-------|---------|
+| deck-creator | Presentation and pitch deck generation |
 
 ## Quick Start
 

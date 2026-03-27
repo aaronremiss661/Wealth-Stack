@@ -6,6 +6,8 @@ WealthStack is a free, open-source AI assistant that helps you manage your money
 
 You install it as a plugin inside Claude (Anthropic's AI), and it gives Claude superpowers for Indian wealth management.
 
+It's built in 10 layers — 27 skills, 26 AI agents, 23 scripts, a regulatory knowledge base, curated knowledge packs, self-improving agent memory, and an autonomous research system.
+
 ---
 
 ## Who is it for?
@@ -36,6 +38,9 @@ Scans your portfolio for tax-loss harvesting opportunities. Knows the new tax ra
 
 **"Analyze my Zerodha portfolio"**
 Import your holdings CSV directly. Gets live prices, shows allocation by sector/market cap, flags concentration risk, compares performance vs Nifty 50.
+
+**"What's happening in the market today?"**
+Morning briefing with Nifty/Sensex levels, RBI policy updates, FII/DII flows, sector rotation signals, and earnings highlights.
 
 ### For HNIs and UHNIs
 
@@ -71,11 +76,26 @@ Will drafting checklist, nomination audit across all accounts (demat, bank, insu
 
 ## How does it work?
 
-WealthStack has three layers:
+WealthStack is built in 10 layers:
 
-### 1. Skills (20 slash commands)
+```
+Layer 10  Website & Docs         Marketing site, this guide, README
+Layer 9   Research System         Autonomous research, self-audit, active learning
+Layer 8   Agent Memory            26 persistent memory directories, self-improving
+Layer 7   Knowledge Packs         4 curated domain bundles (tax, NRI, PMS, retirement)
+Layer 6   Knowledge Base          Regulatory rules + historical crisis scenarios
+Layer 5   Scripts                 23 CLI tools — data fetching, calculations, analysis
+Layer 4   Agents                  26 AI specialists with distinct personas
+Layer 3   Skills                  27 slash commands — structured workflows
+Layer 2   Plugin Infrastructure   Manifest, settings, configuration
+Layer 1   Claude Code             Foundation model + tool access
+```
+
+### 1. Skills (27 slash commands)
 
 These are things you can ask it to do. Type the command and it runs a structured workflow.
+
+**Core workflows:**
 
 | Command | What happens |
 |---------|-------------|
@@ -88,38 +108,138 @@ These are things you can ask it to do. Type the command and it runs a structured
 | `/wealthstack:market-brief` | Today's Nifty/Sensex, RBI policy, FII flows, sector analysis |
 | `/wealthstack:client-report` | Generates a professional HTML report you can share |
 
-...and 12 more covering compliance, insurance, FDs, bonds, stock screening, mutual funds, tax filing, rebalancing, HNI advisory, and family office.
+**Operations & monitoring:**
 
-### 2. Agents (11 AI specialists)
+| Command | What happens |
+|---------|-------------|
+| `/wealthstack:alerts` | Set threshold-based alerts on portfolio drift, price moves |
+| `/wealthstack:market-shock` | Stress test your portfolio against crisis scenarios |
+| `/wealthstack:onboarding` | New client intake with risk profiling |
+| `/wealthstack:annual-review` | Yearly portfolio health check and rebalancing |
+| `/wealthstack:client-switch` | Switch between multiple client portfolios |
+
+**Research & self-improvement:**
+
+| Command | What happens |
+|---------|-------------|
+| `/wealthstack:research` | Deep autonomous research on any financial topic |
+| `/wealthstack:audit` | Self-checks knowledge freshness, flags stale data |
+
+...plus 9 more covering compliance, insurance, FDs, bonds, stock screening, mutual funds, tax filing, rebalancing, HNI advisory, and family office.
+
+### 2. Agents (26 AI specialists)
 
 Behind each skill is a specialized AI agent — like departments in a wealth management firm:
+
+**Analysis & Research**
 
 | Agent | Think of it as... |
 |-------|------------------|
 | Portfolio Analyzer | Your research analyst who knows every holding |
 | Risk Profiler | The quant who calculates Sharpe ratios and runs stress tests |
-| Tax Strategist | Your CA who finds every deduction and harvesting opportunity |
+| Market Researcher | Your morning briefing analyst covering Nifty, RBI, and FII flows |
+| Capital Markets Research | The desk tracking IPOs, derivatives, yield curves, and earnings |
+
+**Advisory**
+
+| Agent | Think of it as... |
+|-------|------------------|
+| Investment Counsellor | The SEBI RIA drafting your Investment Policy Statement |
+| Fund Manager | The stock picker with forensic accounting skills |
+| Asset Allocator | The strategist deciding equity vs debt vs alternatives |
 | HNI Advisor | The private banker at 360 ONE or Kotak Private |
 | PMS Analyst | The product research desk evaluating Marcellus vs ASK |
+
+**Planning**
+
+| Agent | Think of it as... |
+|-------|------------------|
 | Goal Planner | The Dezerv-style advisor mapping every rupee to a goal |
-| NRI Advisor | The specialist who knows FEMA, DTAA, and PFIC inside out |
+| Retirement Specialist | The pension planner optimizing NPS, EPF, and bucket strategy |
 | Family Office Advisor | The Waterfield-style multi-generational wealth structurer |
-| Market Researcher | Your morning briefing analyst covering Nifty, RBI, and FII flows |
+| Liquidity Event Planner | The ESOP exit specialist — pre-IPO, secondary sales, lump sums |
+
+**Tax & Compliance**
+
+| Agent | Think of it as... |
+|-------|------------------|
+| Tax Strategist | Your CA who finds every deduction and harvesting opportunity |
 | Compliance Checker | The SEBI compliance officer running suitability checks |
+| NRI Advisor | The specialist who knows FEMA, DTAA, and PFIC inside out |
+
+**Specialized**
+
+| Agent | Think of it as... |
+|-------|------------------|
 | Insurance & Estate | The advisor auditing your term life, health cover, and will |
+| Credit & Debt Advisor | The loan optimizer — CIBIL, refinancing, debt restructuring |
+| NBFC Lending | The LAS/LAP specialist for loans against securities and property |
+| Alternative Investments | The REIT, InvIT, SGB, and crypto allocation advisor |
+| Private Equity | The LP due diligence analyst evaluating PE fund commitments |
+| Early Stage Investor | The angel investing and AIF Cat I specialist |
+| Startup Equity Advisor | The ESOP tax expert — exercise timing, secondary sales |
+| Corporate Treasury | The CFO's desk — cash deployment, FD laddering, working capital |
+| ESG Planner | The sustainability analyst — BRSR, carbon footprint, green bonds |
+| Deck Creator | The presentation team generating client-ready portfolio reviews |
 
-### 3. Scripts (8 CLI tools)
+### 3. Scripts (23 CLI tools)
 
-Calculators and data fetchers that the agents use:
+Calculators and data fetchers that the agents use under the hood:
 
-- **SIP Calculator** — How much to invest monthly to reach any goal
-- **Tax Calculator** — Old regime vs new regime, instant comparison
-- **XIRR Calculator** — True returns on your portfolio (time-weighted)
-- **FD Comparator** — Rates across SBI, HDFC, Kotak, Bajaj Finance, small finance banks
-- **Stock Screener** — Filter NSE/BSE by PE, ROE, debt, dividends
-- **MF NAV Fetcher** — Live mutual fund NAVs from AMFI
-- **Quote Fetcher** — Live stock prices from NSE/BSE
-- **Portfolio Importer** — Parse CSVs from Zerodha, Groww, or custom format
+**Data fetching** — Live stock quotes, MF NAVs, index data, FII/DII flows, RBI rates, historical prices
+
+**Portfolio analysis** — CSV import (Zerodha/Groww/Angel One), XIRR calculation, portfolio enrichment, CAS PDF parsing
+
+**Calculations** — SIP calculator, tax calculator (old vs new regime), lot-level tax optimizer (FIFO/HIFO/LIFO), Monte Carlo retirement simulation, goal gap analysis
+
+**Analysis** — Stock screener, FD rate comparison, drift analyzer, SEBI suitability check, alert monitoring, strategy backtesting
+
+**Client management** — Multi-client portfolio manager, knowledge base seeder
+
+### 4. Knowledge Base
+
+Hard-coded regulatory rules and historical scenarios that agents reference during analysis.
+
+**Regulatory knowledge:**
+- SEBI rules — PMS minimums, AIF categories, RIA regulations, suitability norms
+- Income Tax Act — Sections, exemptions, deductions, capital gains rates
+- FEMA — Foreign exchange rules for NRIs
+- RBI — Monetary policy, repo rates, lending norms
+
+**Historical scenarios:**
+Agents use past crises to stress-test your portfolio and contextualize market events:
+- 2008 Global Financial Crisis
+- 2013 Taper Tantrum
+- 2016 Demonetization
+- 2020 COVID crash
+- 2022 Rate Hike Cycle
+
+### 5. Knowledge Packs
+
+Curated, domain-specific knowledge bundles that supercharge specific agents:
+
+| Pack | What it adds |
+|------|-------------|
+| **India Tax 2025** | Latest LTCG/STCG rates, TDS/TCS tables, deductions, new regime guide |
+| **NRI US Corridor** | India-US DTAA, FBAR/FATCA rules, cross-border planning strategies |
+| **PMS Landscape 2025** | Top PMS manager profiles, fee structures, PMS vs MF vs AIF comparison |
+| **Retirement & FIRE** | FIRE India guide, NPS/EPF optimization, withdrawal strategies |
+
+### 6. Agent Memory
+
+Every agent has a persistent memory directory that survives across conversations. When the tax strategist learns something new about a recent budget change, or the NRI advisor discovers a DTAA nuance — they save it. Next time you ask, they already know.
+
+26 agents, 26 independent memory stores — each getting smarter with every conversation.
+
+### 7. Research System
+
+Autonomous research capability, so WealthStack doesn't just answer — it actively learns:
+
+- **Passive learning** — Agents save insights from every user conversation
+- **Active research** — `/research` triggers deep investigation on any financial topic
+- **Self-audit** — `/audit` checks knowledge freshness and flags outdated data
+
+Research output is saved to `research/` and fed back into agent memory for future use.
 
 ---
 
@@ -151,6 +271,8 @@ Once approved in the plugin marketplace, just search "WealthStack" in Browse Plu
 | Quarterly reports (if you're lucky) | Instant analysis anytime |
 | Minimum Rs 50L for PMS access | Evaluates PMS/AIF for anyone |
 | One-size-fits-all | Adapts from Rs 5L retail to Rs 100Cr+ family office |
+| Static knowledge, annual training | Self-improving agents that learn with every conversation |
+| No memory of past conversations | Persistent memory across sessions |
 
 ---
 
@@ -180,6 +302,7 @@ Always consult qualified professionals (CA, SEBI RIA, lawyer) before making fina
 | **Gold** | SGBs (2.5% interest + tax-free at maturity), Gold ETFs |
 | **Real estate** | REITs, fractional ownership platforms |
 | **FDs** | Bank FD rates, corporate FD (Bajaj, Mahindra), small finance banks |
+| **Crisis history** | 2008 GFC, 2013 Taper Tantrum, 2016 Demonetization, 2020 COVID, 2022 Rate Hikes |
 
 ---
 
@@ -194,6 +317,8 @@ Contributions welcome:
 - AMFI MF NAV real-time integration
 - NPS/PPF/EPF tracking
 - F&O position analysis
+- New knowledge packs (NRI-UK corridor, NRI-Singapore corridor)
+- Historical scenarios (2024 election rally, 2025 tariff wars)
 - Regional language support (Hindi, Tamil, Telugu, Kannada, Marathi)
 
 ---

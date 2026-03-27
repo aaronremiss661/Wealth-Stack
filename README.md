@@ -2,9 +2,9 @@
 
 AI-powered wealth management plugin for Indian investors.
 
-**20 skills. 26 AI agents. Built for India.**
+**27 skills. 26 AI agents. 23 scripts. 10 layers deep. Built for India.**
 
-PMS/AIF due diligence, NRI tax planning, HNI/UHNI advisory, family office governance, goal-based SIPs, SEBI compliance — all from your terminal.
+PMS/AIF due diligence, NRI tax planning, HNI/UHNI advisory, family office governance, goal-based SIPs, SEBI compliance, autonomous research, self-improving agent memory — all from your terminal.
 
 ## Install
 
@@ -27,9 +27,26 @@ Then type `/wealthstack:portfolio` or any skill name.
 
 Upload the contents of any `skills/*/SKILL.md` or `agents/*.md` file as **Project Knowledge** in your Claude project.
 
+## Architecture
+
+WealthStack is built in 10 layers, each adding capability on top of the last:
+
+```
+Layer 10  Website & Docs         Marketing site, GUIDE.md, README
+Layer 9   Research System         Autonomous research, self-audit, active learning
+Layer 8   Agent Memory            26 persistent memory directories, self-improving
+Layer 7   Knowledge Packs         4 curated domain bundles (tax, NRI, PMS, retirement)
+Layer 6   Knowledge Base          Regulatory rules + historical crisis scenarios
+Layer 5   Scripts                 23 CLI tools — data fetching, calculations, analysis
+Layer 4   Agents                  26 AI specialists with distinct personas
+Layer 3   Skills                  27 slash commands — structured workflows
+Layer 2   Plugin Infrastructure   Manifest, settings, configuration
+Layer 1   Claude Code             Foundation model + tool access
+```
+
 ## What's Inside
 
-### Skills (slash commands)
+### Skills (27 slash commands)
 
 **Core**
 
@@ -54,7 +71,7 @@ Upload the contents of any `skills/*/SKILL.md` or `agents/*.md` file as **Projec
 | `/family-office` | Trusts, HUF, succession, philanthropy, governance |
 | `/goal-planner` | Goal-mapped SIPs with glide path allocation |
 
-**More**
+**Products & Analysis**
 
 | Skill | What It Does |
 |-------|-------------|
@@ -65,6 +82,23 @@ Upload the contents of any `skills/*/SKILL.md` or `agents/*.md` file as **Projec
 | `/tax-filing` | Old vs new regime, 80C/80D optimization, capital gains |
 | `/retirement-calc` | FIRE planning, NPS optimization, withdrawal strategy |
 | `/wealth-overview` | Lists all skills and capabilities |
+
+**Operations & Monitoring**
+
+| Skill | What It Does |
+|-------|-------------|
+| `/alerts` | Portfolio monitoring, threshold-based alerts, rebalancing triggers |
+| `/market-shock` | Crisis scenario testing, stress modeling |
+| `/onboarding` | Client intake, risk profile questionnaire |
+| `/annual-review` | Yearly portfolio review and rebalancing |
+| `/client-switch` | Multi-client portfolio management |
+
+**Research & Self-Improvement**
+
+| Skill | What It Does |
+|-------|-------------|
+| `/research` | Autonomous deep research on any financial topic |
+| `/audit` | Self-audit of knowledge freshness and accuracy |
 
 ### Agents (26 subagents)
 
@@ -124,18 +158,114 @@ Upload the contents of any `skills/*/SKILL.md` or `agents/*.md` file as **Projec
 |-------|---------------|
 | `deck-creator` | Client-ready portfolio review presentations |
 
-### Scripts (CLI tools)
+### Scripts (23 CLI tools)
+
+**Data Fetching**
 
 | Script | What It Does |
 |--------|-------------|
 | `fetch-quotes.sh` | Stock/ETF quotes via yfinance (NSE/BSE) |
+| `fetch-mf-nav.sh` | Mutual fund NAV from AMFI API |
+| `fetch-indices.sh` | Nifty/Sensex index data |
+| `fetch-fii-dii.sh` | FII/DII flow data |
+| `fetch-rbi-rates.sh` | RBI repo rate and policy data |
+| `fetch-historical.sh` | Historical prices for backtesting |
+
+**Portfolio Analysis**
+
+| Script | What It Does |
+|--------|-------------|
+| `import-portfolio.sh` | Import CSV from Zerodha/Groww/Angel One/custom format |
+| `portfolio-xirr.sh` | XIRR from portfolio cashflows |
+| `enrich-portfolio.sh` | Add sector, market-cap, fundamentals data |
+| `parse-cas-pdf.sh` | Parse MF Consolidated Account Statement PDFs |
+
+**Calculations**
+
+| Script | What It Does |
+|--------|-------------|
 | `sip-calculator.sh` | SIP future value and required SIP calculator |
 | `tax-calculator.sh` | Old vs new regime comparison (FY 2025-26) |
-| `portfolio-xirr.sh` | XIRR from portfolio cashflows |
-| `fd-compare.sh` | FD rates across major banks and NBFCs |
-| `fetch-mf-nav.sh` | Mutual fund NAV from AMFI API |
+| `tax-lot-optimizer.sh` | Lot-level tax optimization (FIFO/HIFO/LIFO) |
+| `monte-carlo.sh` | Retirement corpus probability simulation |
+| `goal-gap-analyzer.sh` | Goal vs current savings gap analysis |
+
+**Analysis**
+
+| Script | What It Does |
+|--------|-------------|
 | `nse-screener.sh` | Stock screening by value/quality/growth/dividend |
-| `import-portfolio.sh` | Import CSV from Zerodha/Groww/custom format |
+| `fd-compare.sh` | FD rates across major banks and NBFCs |
+| `drift-analyzer.sh` | Portfolio drift from target allocation |
+| `suitability-check.sh` | SEBI suitability rule compliance |
+| `check-alerts.sh` | Monitor portfolio for alert conditions |
+| `backtest.sh` | Historical strategy backtesting |
+
+**Client Management**
+
+| Script | What It Does |
+|--------|-------------|
+| `client-manager.sh` | Multi-client portfolio management |
+| `seed-knowledge.sh` | Initialize knowledge base |
+
+### Knowledge Base
+
+Regulatory rules and historical crisis scenarios that agents reference during analysis.
+
+**Regulatory** (`knowledge/regulatory/`)
+
+| File | Coverage |
+|------|----------|
+| `sebi-rules.md` | PMS, AIF, RIA regulations, suitability norms |
+| `income-tax-rules.md` | Income Tax Act sections, exemptions, deductions |
+| `fema-rules.md` | Foreign exchange management for NRIs |
+| `rbi-rules.md` | Monetary policy, lending rates, banking rules |
+
+**Historical Scenarios** (`knowledge/scenarios/`)
+
+| Scenario | What agents learn from it |
+|----------|--------------------------|
+| 2008 Global Financial Crisis | Systemic risk, correlation spikes, recovery patterns |
+| 2013 Taper Tantrum | EM currency and debt impact |
+| 2016 Demonetization | India-specific liquidity shock |
+| 2020 COVID crash | V-shaped recovery, sectoral divergence |
+| 2022 Rate Hike Cycle | Duration risk, growth-to-value rotation |
+
+### Knowledge Packs (4 curated bundles)
+
+Shareable, domain-specific knowledge sets in `packs/`:
+
+| Pack | Contents | Enhances |
+|------|----------|----------|
+| **India Tax 2025** | LTCG/STCG rates, TDS/TCS, deductions, new regime guide | tax-strategist, compliance-checker |
+| **NRI US Corridor** | India-US DTAA, FBAR/FATCA, cross-border planning | nri-advisor, tax-strategist |
+| **PMS Landscape 2025** | Top PMS managers, fee comparison, PMS vs MF vs AIF | pms-analyst, hni-advisor |
+| **Retirement & FIRE** | FIRE India guide, NPS/EPF optimization, withdrawal strategies | retirement-specialist, goal-planner |
+
+### Agent Memory (self-improving knowledge)
+
+Every agent has a persistent memory directory at `.claude/agent-memory/<agent-name>/` that survives across conversations.
+
+**How it works:**
+1. Agent checks its memory before responding
+2. Evaluates whether a new insight was discovered
+3. Saves dated findings (e.g., `ltcg-rate-change-2025.md`)
+4. Updates its `MEMORY.md` index
+5. Next conversation benefits from accumulated knowledge
+
+26 agents, 26 independent memory stores — each getting smarter with use.
+
+### Research System
+
+Autonomous research capability inspired by Karpathy's autoresearch, accessible via `/research` and `/audit`.
+
+| Mode | How it works |
+|------|-------------|
+| **Passive Learning** | Agents learn from every user conversation |
+| **Active Research** | `/research` triggers deep autonomous research on any topic |
+| **Self-Audit** | `/audit` verifies knowledge freshness and flags stale data |
+
+Research output is saved to `research/` and fed back into agent memory.
 
 ## Client Tiers
 
@@ -152,19 +282,35 @@ Upload the contents of any `skills/*/SKILL.md` or `agents/*.md` file as **Projec
 ```
 wealthstack/
 ├── .claude-plugin/
-│   └── plugin.json        # Plugin manifest
-├── skills/                # 20 skill directories
+│   └── plugin.json           # Plugin manifest
+├── skills/                   # 27 skill directories
 │   ├── portfolio/SKILL.md
-│   ├── risk-assess/SKILL.md
+│   ├── research/SKILL.md
+│   ├── alerts/SKILL.md
 │   └── ...
-├── agents/                # 26 subagent definitions
+├── agents/                   # 26 subagent definitions
 │   ├── portfolio-analyzer.md
 │   ├── hni-advisor.md
 │   └── ...
-├── scripts/               # 8 CLI tools
+├── scripts/                  # 23 CLI tools
 │   ├── sip-calculator.sh
+│   ├── monte-carlo.sh
+│   ├── backtest.sh
 │   └── ...
-├── settings.json          # Default plugin settings
+├── knowledge/                # Regulatory + historical scenarios
+│   ├── regulatory/           # SEBI, Income Tax, FEMA, RBI
+│   └── scenarios/            # 2008 GFC, 2020 COVID, etc.
+├── packs/                    # 4 knowledge packs
+│   ├── india-tax-2025/
+│   ├── nri-us-corridor/
+│   ├── pms-landscape-2025/
+│   └── retirement-fire/
+├── research/                 # Autonomous research output
+│   └── program.md            # Research framework
+├── .claude/agent-memory/     # 26 persistent agent memories
+├── docs/                     # Marketing website
+├── settings.json             # Default plugin settings
+├── GUIDE.md                  # Complete user guide
 ├── LICENSE
 └── README.md
 ```
@@ -177,6 +323,8 @@ PRs welcome for:
 - NPS/PPF/EPF tracking
 - F&O position analysis
 - More broker formats
+- New knowledge packs (e.g., NRI-UK corridor, NRI-Singapore corridor)
+- Historical scenarios (e.g., 2024 election rally)
 - Regional language support
 
 ## Disclaimer

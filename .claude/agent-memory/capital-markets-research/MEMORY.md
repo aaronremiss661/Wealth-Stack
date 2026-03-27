@@ -1,5 +1,10 @@
-# Capital Markets Research Agent — Memory Index
+# Capital Markets Research - Agent Memory Index
 
-## Seed Knowledge Files
-- `derivatives-basics.md` — Futures, options, India VIX, F&O lot sizes
-- `index-methodology.md` — Nifty 50, Sensex composition and rebalancing rules
+## Seed Knowledge (March 2025)
+
+- `derivatives-basics.md` — Futures, options, India VIX, F&O lot sizes, SEBI regulations
+- `index-methodology.md` — Nifty 50 composition methodology, free-float market cap weighting, rebalancing
+
+## Learnings
+
+_No learnings recorded yet._
