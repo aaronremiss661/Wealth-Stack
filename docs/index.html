@@ -132,6 +132,18 @@
       background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.2);
       color:var(--white);
     }
+    .nav-actions { display:flex; align-items:center; gap:0.75rem; }
+    .nav-signin {
+      font-size:0.78rem; font-weight:400; padding:0.45rem 1rem;
+      color:var(--w60); transition:color 0.3s;
+    }
+    .nav-signin:hover { color:var(--white); }
+    .nav-signup {
+      font-size:0.78rem; font-weight:500; padding:0.5rem 1.4rem;
+      background:var(--gold); color:var(--white);
+      border-radius:999px; transition:all 0.3s;
+    }
+    .nav-signup:hover { background:var(--gold-bright); transform:translateY(-1px); }
 
     /* ── MOBILE MENU TOGGLE ── */
     .nav-toggle {
@@ -354,6 +366,35 @@
       color:var(--w60); max-width:500px; line-height:1.8;
     }
     .sec-header { margin-bottom:clamp(3rem,5vw,5rem); }
+
+    /* ── PLATFORM SECTION ── */
+    .platform-grid {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+    }
+    .platform-card {
+      padding:clamp(1.8rem,2.5vw,2.5rem);
+      border-top:1px solid var(--w10);
+      transition:background 0.4s; position:relative;
+    }
+    .platform-card:not(:nth-child(3n+1)) { border-left:1px solid var(--w10); }
+    .platform-card:hover { background:rgba(74,144,217,0.03); }
+    .platform-card .p-icon {
+      width:40px; height:40px; margin-bottom:1rem;
+      color:var(--gold); opacity:0.6; transition:opacity 0.4s;
+    }
+    .platform-card .p-icon svg { width:100%; height:100%; }
+    .platform-card:hover .p-icon { opacity:1; }
+    .platform-card h3 {
+      font-size:1.05rem; font-weight:500; margin-bottom:0.4rem;
+      letter-spacing:-0.01em; color:var(--white);
+    }
+    .platform-card p {
+      font-size:0.82rem; font-weight:300; color:var(--w60); line-height:1.65;
+    }
+    @media(max-width:768px) {
+      .platform-grid { grid-template-columns:1fr !important; }
+      .platform-card:not(:nth-child(3n+1)) { border-left:none; }
+    }
 
     /* ── FEATURE ACCORDION (Aaru-style sticky visual + scrolling text) ── */
     .features {
@@ -738,6 +779,7 @@
       .nav-links { display:none; }
       .nav-toggle { display:block; order:2; }
       .nav-cta { display:none; }
+      .nav-actions { display:none; }
       .nav-logo { font-size:1rem; flex:1; }
       .nav-logo .w { font-size:inherit; }
       .nav-logo .s { font-size:inherit; }
@@ -904,6 +946,7 @@
   <div class="nav-inner">
     <a href="#" class="nav-logo" aria-label="WealthStack home"><span class="w">wealth</span><span class="s"><span>s</span><span>t</span><span>a</span><span>c</span><span>k</span></span></a>
     <ul class="nav-links" role="list">
+      <li><a href="#platform">Platform</a></li>
       <li><a href="#capabilities">Capabilities</a></li>
       <li><a href="#agents">Agents</a></li>
       <li><a href="#tiers">Tiers</a></li>
@@ -912,7 +955,10 @@
     <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-drawer" id="nav-toggle-btn">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
-    <a href="https://github.com/revanupoju/Wealth-Stack" class="nav-cta" target="_blank" rel="noopener noreferrer">GitHub <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    <div class="nav-actions">
+      <a href="https://app.getwealthstack.com/signin" class="nav-signin">Sign In</a>
+      <a href="https://app.getwealthstack.com/signup" class="nav-signup">Get Started Free</a>
+    </div>
   </div>
 </nav>
 
@@ -921,11 +967,14 @@
   <button class="nav-drawer-close" aria-label="Close menu" id="nav-drawer-close">
     <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg>
   </button>
+  <a href="#platform">Platform</a>
   <a href="#capabilities">Capabilities</a>
   <a href="#agents">Agents</a>
   <a href="#tiers">Tiers</a>
   <a href="#start">Install</a>
   <a href="https://github.com/revanupoju/Wealth-Stack" target="_blank" rel="noopener noreferrer">GitHub</a>
+  <a href="https://app.getwealthstack.com/signin" style="color:var(--w60)">Sign In</a>
+  <a href="https://app.getwealthstack.com/signup" style="color:var(--gold)">Get Started Free</a>
 </div>
 
 <!-- HERO -->
@@ -939,7 +988,7 @@
     <h1 id="hero-heading" data-a="1">Your money, <span class="accent">smartly<br>stacked</span></h1>
     <p class="hero-sub" data-a="2">Ask it anything about your money — taxes, mutual funds, retirement, NRI rules. It gives you answers that even your CA charges lakhs for. Free. And it gets smarter every time you use it.</p>
     <div class="hero-btns" data-a="3">
-      <a href="https://github.com/revanupoju/Wealth-Stack" class="btn-gold" target="_blank" rel="noopener noreferrer">Get Started</a>
+      <a href="https://app.getwealthstack.com/signup" class="btn-gold">Get Started Free</a>
       <a href="#capabilities" class="btn-link">See what it can do <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
 
@@ -968,6 +1017,54 @@
     <div class="stat-cell" data-a="3"><div class="stat-num">&#8377;0</div><div class="stat-desc">open source, forever</div></div>
   </div>
 </div>
+
+<!-- PLATFORM -->
+<section class="sec" id="platform" aria-labelledby="platform-heading">
+  <div class="sec-inner">
+    <div class="sec-header">
+      <div class="eyebrow" data-a>THE PLATFORM</div>
+      <h2 class="headline" id="platform-heading" data-a="1">Your complete wealth<br>management <em>command center</em></h2>
+      <p class="subdesc" data-a="2">Everything from the open-source plugin — now as a hosted platform with dashboards, persistent memory, and multi-model AI.</p>
+    </div>
+    <div class="platform-grid">
+      <div class="platform-card" data-a>
+        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
+        <h3>Personal Dashboard</h3>
+        <p>Net worth, asset allocation, goal progress — your complete financial picture at a glance.</p>
+      </div>
+      <div class="platform-card" data-a="1">
+        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <h3>26 AI Agents</h3>
+        <p>Chat with specialist agents — portfolio analysis, tax strategy, NRI planning — each with persistent memory.</p>
+      </div>
+      <div class="platform-card" data-a="2">
+        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+        <h3>Portfolio Management</h3>
+        <p>Import from Zerodha CSV, track holdings in real-time, get concentration and drift alerts.</p>
+      </div>
+      <div class="platform-card" data-a>
+        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+        <h3>Goal-Based Planning</h3>
+        <p>SIP calculators, retirement planning, education funds — map your investments to life goals with glide paths.</p>
+      </div>
+      <div class="platform-card" data-a="1">
+        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <h3>Smart Onboarding</h3>
+        <p>Risk profiling, income analysis, goal capture — personalized agent recommendations from day one.</p>
+      </div>
+      <div class="platform-card" data-a="2">
+        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+        <h3>Multi-Provider AI</h3>
+        <p>Bring your own API keys — Claude, GPT-4o, o3. Choose the best model for each task, or let the platform decide.</p>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:3rem;" data-a>
+      <a href="https://app.getwealthstack.com/signup" class="btn-gold">Try the Platform Free</a>
+    </div>
+  </div>
+</section>
+
+<div class="deco" aria-hidden="true"><hr></div>
 
 <!-- FEATURE ACCORDION (Aaru-style: sticky visual + scroll text) -->
 <section class="features" id="capabilities" aria-labelledby="cap-heading">
@@ -1263,11 +1360,13 @@
 <!-- CTA -->
 <section class="cta" aria-labelledby="cta-heading">
   <h2 id="cta-heading" data-a>Stop guessing.<br><em>Start stacking.</em></h2>
-  <p class="subdesc" data-a="1">Free. Open source. No sign-up.<br>Just you and your money, finally making sense.</p>
+  <p class="subdesc" data-a="1">Free to start. Open source forever.<br>Your money, your data, your AI wealth team.</p>
   <div data-a="2">
+    <a href="https://app.getwealthstack.com/signup" class="btn-gold" style="margin-bottom:1.5rem;">Start Free</a>
+    <br>
     <div class="cta-code" onclick="copyClone(this)" role="group" aria-label="Clone command"><span>git clone https://github.com/revanupoju/Wealth-Stack.git</span><button class="copy-btn" id="copyBtn" aria-label="Copy clone command"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button></div>
-    <br><br>
-    <a href="https://github.com/revanupoju/Wealth-Stack" class="btn-gold" target="_blank" rel="noopener noreferrer">Star on GitHub</a>
+    <br>
+    <a href="https://github.com/revanupoju/Wealth-Stack" class="btn-link" target="_blank" rel="noopener noreferrer">Star on GitHub <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
   </div>
 </section>
 </main>
@@ -1276,6 +1375,7 @@
 <footer class="footer" role="contentinfo">
   <div class="footer-l">&copy; 2026 WealthStack &middot; MIT Licensed</div>
   <nav class="footer-r" aria-label="Footer navigation">
+    <a href="https://app.getwealthstack.com/signup">Platform</a>
     <a href="https://github.com/revanupoju/Wealth-Stack" target="_blank" rel="noopener noreferrer">GitHub</a>
     <a href="https://github.com/revanupoju/Wealth-Stack/issues" target="_blank" rel="noopener noreferrer">Issues</a>
     <a href="https://github.com/revanupoju/Wealth-Stack/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">License</a>
