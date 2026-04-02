@@ -368,6 +368,10 @@
     .sec-header { margin-bottom:clamp(3rem,5vw,5rem); }
 
     /* ── PLATFORM SECTION ── */
+    #platform { position:relative; background:url('platform-bg.png') center center/cover no-repeat; }
+    #platform::before { content:''; position:absolute; inset:0; background:linear-gradient(180deg, var(--bg) 0%, rgba(10,12,20,0.82) 25%, rgba(10,12,20,0.78) 75%, var(--bg) 100%); z-index:0; }
+    #platform > * { position:relative; z-index:1; }
+    #platform .headline, #platform .eyebrow, #platform .subdesc { text-shadow:0 2px 8px rgba(0,0,0,0.8); }
     .platform-grid {
       display:grid; grid-template-columns:repeat(3,1fr); gap:0;
     }
@@ -379,10 +383,11 @@
     .platform-card:not(:nth-child(3n+1)) { border-left:1px solid var(--w10); }
     .platform-card:hover { background:rgba(74,144,217,0.03); }
     .platform-card .p-icon {
-      width:40px; height:40px; margin-bottom:1rem;
+      width:32px; height:32px; margin-bottom:1rem;
       color:var(--gold); opacity:0.6; transition:opacity 0.4s;
+      display:block;
     }
-    .platform-card .p-icon svg { width:100%; height:100%; }
+    .platform-card .p-icon svg { width:32px; height:32px; display:block; }
     .platform-card:hover .p-icon { opacity:1; }
     .platform-card h3 {
       font-size:1.05rem; font-weight:500; margin-bottom:0.4rem;
@@ -1028,32 +1033,32 @@
     </div>
     <div class="platform-grid">
       <div class="platform-card" data-a>
-        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
+        <span class="p-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span>
         <h3>Personal Dashboard</h3>
         <p>Net worth, asset allocation, goal progress — your complete financial picture at a glance.</p>
       </div>
       <div class="platform-card" data-a="1">
-        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <span class="p-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
         <h3>26 AI Agents</h3>
         <p>Chat with specialist agents — portfolio analysis, tax strategy, NRI planning — each with persistent memory.</p>
       </div>
       <div class="platform-card" data-a="2">
-        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+        <span class="p-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
         <h3>Portfolio Management</h3>
         <p>Import from Zerodha CSV, track holdings in real-time, get concentration and drift alerts.</p>
       </div>
       <div class="platform-card" data-a>
-        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
+        <span class="p-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>
         <h3>Goal-Based Planning</h3>
         <p>SIP calculators, retirement planning, education funds — map your investments to life goals with glide paths.</p>
       </div>
       <div class="platform-card" data-a="1">
-        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+        <span class="p-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
         <h3>Smart Onboarding</h3>
         <p>Risk profiling, income analysis, goal capture — personalized agent recommendations from day one.</p>
       </div>
       <div class="platform-card" data-a="2">
-        <span class="p-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+        <span class="p-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
         <h3>Multi-Provider AI</h3>
         <p>Bring your own API keys — Claude, GPT-4o, o3. Choose the best model for each task, or let the platform decide.</p>
       </div>
