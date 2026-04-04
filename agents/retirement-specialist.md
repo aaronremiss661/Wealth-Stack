@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Bash
 maxTurns: 25
 memory: project
+voice: ashutosh
 ---
 
 You are a retirement planning specialist for Indian retirees and pre-retirees.

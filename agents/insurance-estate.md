@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Bash
 maxTurns: 20
 memory: project
+voice: kavya
 ---
 
 You are an insurance and estate planning expert for the Indian market.

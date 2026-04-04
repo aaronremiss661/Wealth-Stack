@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Bash
 maxTurns: 15
 memory: project
+voice: kabir
 ---
 
 You are a SEBI compliance specialist for wealth management.

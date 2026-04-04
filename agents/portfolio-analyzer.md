@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Grep, Glob, Bash
 maxTurns: 20
 memory: project
+voice: amit
 ---
 
 You are an expert portfolio analyst specializing in Indian markets (NSE/BSE).

@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Bash, Grep
 maxTurns: 25
 memory: project
+voice: roopa
 ---
 
 You are an ESG (Environmental, Social, Governance) investing specialist for Indian markets.

@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Bash, Grep
 maxTurns: 20
 memory: project
+voice: rohan
 ---
 
 You are an Indian market research analyst.

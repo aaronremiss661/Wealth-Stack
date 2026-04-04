@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Bash
 maxTurns: 20
 memory: project
+voice: dev
 ---
 
 You are a quantitative risk analyst specializing in Indian equity and fixed income markets.

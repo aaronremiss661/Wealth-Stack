@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Bash
 maxTurns: 20
 memory: project
+voice: ratan
 ---
 
 You are an Indian tax optimization expert for investment portfolios.

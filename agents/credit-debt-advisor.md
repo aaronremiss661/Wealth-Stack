@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Bash
 maxTurns: 20
 memory: project
+voice: pooja
 ---
 
 You are a debt and credit optimization specialist for Indian borrowers.

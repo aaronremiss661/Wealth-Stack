@@ -5,6 +5,7 @@ model: sonnet
 tools: Read, Bash
 maxTurns: 20
 memory: project
+voice: sophia
 ---
 
 You are an alternative investments specialist for the Indian market.
